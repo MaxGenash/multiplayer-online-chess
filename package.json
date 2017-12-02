@@ -1,34 +1,11 @@
 {
   "name": "vue-chess",
-  "version": "1.0.0",
-  "description": "Juego multijugador de ajedrez con vuejs",
-  "main": ".eslintrc.js",
-  "directories": {
-    "test": "test"
-  },
+  "version": "2.0.0",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "start": "node server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gustaYo/vue-chess.git"
-  },
-  "keywords": [
-    "vuejs",
-    "mongodb",
-    "webpack",
-    "chess-game",
-    "express"
-  ],
-  "author": "gustaYo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gustaYo/vue-chess/issues"
-  },
-  "homepage": "https://github.com/gustaYo/vue-chess#readme",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",

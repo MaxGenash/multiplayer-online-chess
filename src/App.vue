@@ -4,12 +4,9 @@
             <md-dropdown-item v-for="len in lenguajes" closing @click="changeLenguaje(len.value)">{{ len.label }}
             </md-dropdown-item>
         </md-dropdown-list>
-        <md-navbar title="VueChess" hamburger mode="hide-on-med-and-down" left nav-class="blue darken-4">
+        <md-navbar hamburger mode="hide-on-med-and-down" left nav-class="grey darken-1">
             <md-nav-item v-link="{name: 'home',activeClass: 'active'}">{{ $t("home.title") }}</md-nav-item>
-            <!--
-            <md-nav-item v-link="{name: 'multiplayer',activeClass: 'active'}">Multijugador</md-nav-item>
-            <md-nav-item v-link="{name: 'createServer',activeClass: 'active'}">Crear servidor</md-nav-item>
-        -->
+         
             <md-nav-item v-link="{name: 'game',activeClass: 'active'}">{{ $t("game.title") }}</md-nav-item>
             <md-nav-item @click="showInvitesGame()" v-if="user.user && $route.name!='game'">{{ $t("invites.title") }}
             </md-nav-item>
@@ -25,49 +22,16 @@
             </md-nav-item>
             <md-nav-item @click="logout()" v-if="user.user">{{ $t("user.logout") }}</md-nav-item>
 
-            <md-nav-item @click="openModal()">{{ $t("about.title") }}</md-nav-item>
             <md-nav-item href="javascript:void(0)" @click="openMenu($event)">
                 {{lenguajeName}}
                 <md-icon right>arrow_drop_down</md-icon>
             </md-nav-item>
         </md-navbar>
         <div>
-            <md-modal id="aboutModal">
-                <h4>{{ $t("about.description") }}</h4>
-                <md-card>
-                     <span slot="title" class="activator">
-                       {{ $t("about.namegame") }}<md-icon right>more_vert</md-icon>
-                     </span>
-                    <!-- wave effect directive -->
-                    <div slot="image" v-wave-effect class="waves-effect waves-block waves-light">
-                        <img style=" width: 30%;left: 33%;" class="activator" src="./assets/2d.png">
-                    </div>
-                    <p>
-                        <a href="https://github.com/gustaYo/vue-chess">{{ $t("about.seemore") }}</a>
-                    </p>
-                    <div slot="reveal">
-                      <span class="card-title grey-text text-darken-4">
-                        {{ $t("about.namegame") }}
-                      </span>
-                        <p>
-                            {{ $t("about.des") }}
-
-                        <h5 class="flat-text-header hello">{{ $t("about.tecn") }}</h5>
-                        <p>
-                            Vuejs, Nodejs, SocketIO, MongoDb y Webpack
-                        </p>
-                        <h5 class="flat-text-header hello">{{ $t("about.dev") }}</h5>
-                        <p>
-                            Gustavo Crespo Sánchez gustayocs@gmail.com 2016
-                        </p>
-
-                        </p>
-                    </div>
-                </md-card>
-            </md-modal>
+           
             <user-invites></user-invites>
         </div>
-        <div class="row">
+        <div class="row" style="padding: 20px">
             <router-view></router-view>
         </div>
     </div>
@@ -86,8 +50,8 @@ export default {
       closeResult: '',
       user: UserService,
       board: Board,
-      lenguajeName: 'Español',
-      lenguaje: Store.get('lenguaje', 'es'),
+      lenguajeName: 'Русский',
+      lenguaje: Store.get('lenguaje', 'ru'),
       lenguajes: Lenguajes.lenguajes
     }
   },
