@@ -4,11 +4,8 @@ var config = {
         options: {
             db: {native_parser: true},
             server: {poolSize: 5},
-//  replset: { rs_name: 'myReplicaSetName' },
-//  user: 'admin',
-//  pass: '123456'
         },
-        uri: process.env.MONGO_URL || 'mongodb://127.0.0.1/vuegustchess'
+        uri: process.env.MONGO_URL || 'mongodb://localhost/chess'
     },
     porthttp: process.env.PORT || 3311,
     multicore: false,

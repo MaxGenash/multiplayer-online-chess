@@ -15,7 +15,7 @@
       </div>
       <md-collection class="col s12 m12 l12">
         <md-collection-item class="col s6 m6 l6 avatar" v-for="invite in invitesGame">
-          <img style="top: 20px;" src="../../assets/50x50defaultAvatar.png" alt="" class="circle">
+          <img style="top: 20px;" src="/images/avatar.png" alt="" class="circle">
           <span class="title"> {{ invite.u1 }} <img style="height: 50px;"
                                                     src="../../../static/images/pieces/staunton/basic/White-Queen.png"
                                                     alt=""> VS <img style="height: 50px;"

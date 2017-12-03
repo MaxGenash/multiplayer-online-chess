@@ -8,8 +8,7 @@ import VueMaterialComponents from 'vue-material-components'
 import Moment from 'moment'
 import Home from 'components/home/'
 import VueCharts from 'vue-charts'
-// import Multiplayer from 'components/multiplayer/'
-// import CreateServer from 'components/createServer/'
+
 import UserLoguin from 'components/user/loguin/'
 import UserAccount from 'components/user/account/'
 import UserData from 'components/user/account/data'
@@ -23,7 +22,7 @@ import '../static/css/materialize.min.css'
 import 'vue-material-components/dist/vue-material-components.css'
 import '../static/css/myStyles.css'
 import '../static/css/animate.min.css'
-// Install plugins
+
 import Storage from './services/lstorage'
 import UserService from './services/user'
 import VueSocketIO from 'vue-socket.io'
@@ -34,16 +33,12 @@ Vue.use(Router)
 Vue.use(Resource)
 Vue.use(VueCharts)
 Vue.http.interceptors.push((request, next) => {
-  // modify request
   var token = Storage.get('token')
   if (token) {
     request.headers['Authorization'] = 'Bearer ' + token
   }
-  // continue to next interceptor
   next((response) => {
-    // modify response
     if (response.status === 401 || response.status === 403) {
-      // desloguear user
       UserService.logout()
     }
   })
@@ -65,13 +60,13 @@ if (Storage.get('token')) {
   var socket = SocketIO.connect(Storage.get('serverDir'), { query: 'token=' + 'Bearer ' + Storage.get('token') })
   Vue.use(VueSocketIO, socket)
 }
-// install plugin
+
 Vue.use(VueI18n)
-// ready translated locales
-const lan = Storage.get('lenguaje', 'es')
+
+const lan = Storage.get('lenguaje', 'ru')
 const locales = locale.i18n
 Vue.config.lang = lan
-// set locales
+
 Object.keys(locales).forEach((lang) => {
   Vue.locale(lang, locales[lang])
 })
@@ -79,9 +74,9 @@ Vue.transition('entern', {
   enterClass: 'pulse',
   leaveClass: 'invisible'
 })
-// Set up a new router
+
 var router = new Router()
-// Route config
+
 router.map({
   '/home': {
     name: 'home',
@@ -127,16 +122,6 @@ router.map({
       }
     }
   },
-  /*
-  '/multiplayer': {
-    name: 'multiplayer',
-    component: Multiplayer
-  },
-  '/createServer': {
-    name: 'createServer',
-    component: CreateServer
-  },
-  */
   '/game': {
     name: 'game',
     component (resolve) {
@@ -154,13 +139,13 @@ router.map({
     component: Puzzle
   }
 })
-// For every new route scroll to the top of the page
+
 router.beforeEach(function () {
   window.scrollTo(0, 0)
 })
-// If no route is matched redirect home
+
 router.redirect({
   '*': '/home'
 })
-// Start up our app
+
 router.start(App, '#app')

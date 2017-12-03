@@ -4,9 +4,7 @@
     <h3 class="popover-title">
       {{ men.send }}
 
-      <md-icon right @click="deleteMensaje(men, $index)" v-show="men.send === user.username">close</md-icon>
-      <md-icon right @click="editMen(men)" v-show="men.send === user.username">edit</md-icon>
-      <span style="padding-left:20px">{{ men.created | moment 'MMMM Do YYYY, h:mm:ss a'}}</span></h3>
+      <span style="padding-left:20px">{{ men.created | moment 'LLL'}}</span></h3>
     <div class="popover-content menText">
       <p v-if="men.type==='text'"> {{ men.body }}</p>
       <div v-if="men.type==='file'">
@@ -50,15 +48,6 @@ export default {
     isImage (file) {
       var type = '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|'
       return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1
-    },
-    deleteMensaje (men, post) {
-      if (window.confirm('Desea eliminar realmente')) {
-        this.mens.splice(post, 1)
-        console.log('elimino')
-      }
-    },
-    editMen (men) {
-      window.alert('editando mensaje')
     }
   }
 }

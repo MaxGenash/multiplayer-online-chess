@@ -13,7 +13,7 @@ exports = module.exports = function(mongoose) {
         name: String,
         image: {
             type: String,
-            default: '50x50defaultAvatar.png'
+            default: 'avatar.png'
         },
         firstName: String,
         lastName: String,

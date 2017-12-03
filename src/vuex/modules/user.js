@@ -1,4 +1,3 @@
-import {} from '../mutation-types'
 const state = {
   user: {}
 }

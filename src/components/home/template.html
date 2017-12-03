@@ -61,21 +61,9 @@
                             <md-linear-preloader :value="fileProgress" v-if="!allFilesUploaded"></md-linear-preloader>
                             <label style="position: relative;float: right;top: -15px" v-if="!allFilesUploaded">{{
                                 fileProgress }}</label>
-                            <upload-files
-                                    :value.sync="filesUpload"
-                                    name="files"
-                                    multiple
-                                    :action="dirActionUpload"
-                                    maxsize="20MB"
-                                    pathpermit="|jpeg|mp4|zip|rar|png|pdf|doc|docx|ppt|pptx|webm|txt"
-                            >
-                                <a class="btn waves-effect waves-light col s3 m3 l3"
-                                   @mouseover="tooltip($event, 'Compartir archivo', 'top')">
-                                    {{ $t("home.upload") }}
-                                </a>
-                            </upload-files>
+                     
                             <a class="btn waves-effect waves-light col s3 m3 l3" @click="inviteChessGame()"
-                               @mouseover="tooltip($event, 'Invitar a partida', 'top')">
+                               >
                                 {{ $t("home.invite") }}
                             </a>
                         </div>

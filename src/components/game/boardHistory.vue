@@ -13,13 +13,14 @@
     </ul>
     <div class="col s12 m12 l12" v-show="!active">
       <md-button class="waves-effect waves-light col s2 m2 l2" @click="moveToHistory(select - 1)">
-        <<
+        <md-icon>keyboard_arrow_left</md-icon>
       </md-button>
       <md-button class="waves-effect waves-light col s3 m3 l3" @click="play()">
-        {{ [played ? '||' : '>'] }}
+        <md-icon v-if="played">pause</md-icon>
+        <md-icon v-else>play_arrow</md-icon>
       </md-button>
       <md-button class="waves-effect waves-light col s2 m2 l2" @click="moveToHistory(select + 1)">
-        >>
+        <md-icon>keyboard_arrow_right</md-icon>
       </md-button>
       <label class="col s1 m1 l1">{{velo}}</label>
       <input v-model="velo" type=range min=0 max=5 step=1 class="col s4 m4 l4">

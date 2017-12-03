@@ -1,4 +1,3 @@
-import {} from '../mutation-types'
 const state = {
   pgn: 'none',
   turn: 'none',

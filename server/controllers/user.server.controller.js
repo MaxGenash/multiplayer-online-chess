@@ -5,7 +5,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 var User = mongoose.model('users');
 var requestIp = require('request-ip');
-var SECRET_TOKEN= "GUSTA_O0000"
+var SECRET_TOKEN= "wrdfcssSTO0"
 
 exports.authenticate = function(req, res) {
 	User.findOne({username: req.body.username}, function(err, user) {
@@ -149,7 +149,6 @@ exports.UserAccess = function(perm) {
 			if (err){
 				return res.status(403).send(err);
 			}
-				// asegurando permiso de usuario en servidor
 				if (!perm){
 					return next();
 				}
@@ -167,15 +166,15 @@ var InstallInit = function() {
 	setTimeout(function() {
 		User.count({}, function(err, count) {
 			if (count == 0) {
-				console.log('instalando usuario root')
-				// install user root admin
+				console.log('init admin user')
+
 				var data = {
-					name: 'Ibis',
-					username: 'ibis',
-					password: 'tiquitiqui',
-					email: 'gustayocs@gmail.com',
-					firstName: 'Brito',
-					lastName: 'Amaya',
+					name: 'Test',
+					username: 'testtest',
+					password: 'testtest',
+					email: 'test@test.com',
+					firstName: 'Ts',
+					lastName: 'St',
 					role: 'Admin',
 					age: 25,
 					sexo: 'f'
@@ -183,31 +182,10 @@ var InstallInit = function() {
 				var userModel = new User(data);
 				userModel.password = bcrypt.hashSync(data.password);
 				userModel.save(function(err, user) {
-				   // console.log(user);
+				    console.log(user);
 				})
 
-				// instalando usuarios por efecto
-				var insert = new Array();
-				var pass= bcrypt.hashSync('asdfg')
-				for (var i = 20 - 1; i >= 0; i--) {
-				var data = {
-					name: 'user'+i,
-					username: 'user'+i,
-					password: pass,
-					email: 'user'+i+'@gmail.com',
-					firstName: 'user'+i,
-					lastName: 'asd',
-					role: 'asd',
-					age: 25,
-					sexo: 'f'
-				}					
-					insert.push(new User(data));
-				};
-				async.mapLimit(insert, 10, function(document, next) {
-					document.save(next);
-				}, function() {
-					console.log('instalados usuarios default')
-				});
+				
 			}
 		})
 	}, 3000);
