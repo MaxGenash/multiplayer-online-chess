@@ -13,7 +13,7 @@
                     <md-badge>{{user.email}}</md-badge>
                 </md-collection-item>
                 <md-collection-item href="javascript:void(0)">{{ $t("account.personalData.created") }}
-                    <md-badge>{{ user.created | moment 'MMMM Do YYYY, h:mm:ss a'}}</md-badge>
+                    <md-badge>{{ user.created | moment 'MMMM Do YYYY'}}</md-badge>
                 </md-collection-item>
 
             </md-collection>

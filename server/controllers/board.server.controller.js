@@ -25,7 +25,6 @@ var changeBoards = (someBoard, method) => {
 }
 
 exports.confirmGame = (io,socket,dta,next) => {
-	// usuario invitado confirma que quiere juegar la partida indicada
 	var nicknames = userController.getNicknames(io)
 	var otherUser = dta.u1 === socket.nickname.nickname ? dta.u2 : dta.u1
 	if(nicknames[otherUser]){
@@ -37,19 +36,17 @@ exports.confirmGame = (io,socket,dta,next) => {
 }
 
 exports.addBoard = (io,socket,dta,next) => {
-	// crear nuevo tablero
-	// verificar que usuarios no tienen un tablero abierto
 	var nicknames = userController.getNicknames(io)
 	var otherUser = dta.u1 === socket.nickname.nickname ? dta.u2 : dta.u1
-	// usuario actual tiene un juego abierto
+
 	if (userIsPlayed(socket.nickname.nickname)) {
 		return next('user_played')
 	}
-	// el otro usuario esta conectado
+
 	if (otherUser !== 'PC' && !nicknames[otherUser]) {
 		return next('user_desconect')
 	}
-	// el otro usuario esta jugando
+
 	if (otherUser !== 'PC' && userIsPlayed(otherUser)){
 		return next('another_user_played')
 	}
@@ -61,7 +58,7 @@ exports.addBoard = (io,socket,dta,next) => {
 		socket.boardr = board._id;
 		board.times = {}
 		boards[board._id]=board;
-		// actualizar listado de juegos activos
+
 		var data= {
 			event: 'boards',
 			data: {
@@ -70,7 +67,7 @@ exports.addBoard = (io,socket,dta,next) => {
 		}
 		io.sockets.emit('event', data);
 		var nicknames = userController.getNicknames(io);
-		// unir ambos usuarios a la nueva sala
+
 		if (dta.u1 !== 'PC' && nicknames[dta.u1]) {
 			io.sockets.connected[nicknames[dta.u1].socket].join(board._id);
 		}
@@ -78,7 +75,7 @@ exports.addBoard = (io,socket,dta,next) => {
 			io.sockets.connected[nicknames[dta.u2].socket].join(board._id);
 		}
 		socket.join(board._id)
-		// iniciar juego de sala
+
 		var data= {
 			event: 'initGame',
 			data: board
@@ -111,10 +108,10 @@ var closeGame = (io, dta, next) => {
 			if (err) {
 				console.log(err.message)
 			} else {
-				console.log("partida guardada")
+				console.log("game saved")
 			}
 		});
-	// actualizar a salas de este tablero
+
 	var data= {
 		event: 'gameFinish',
 		data: {
@@ -123,7 +120,7 @@ var closeGame = (io, dta, next) => {
 		}
 	}
 	io.sockets.in(dta.idBoard).emit('event', data);
-	// guardar para la historia partida en db
+
 	delete boards[dta.idBoard]
 	timesBoards[dta.idBoard].events.send({type: 'finish'});
 	// eliminar process fork countDown
@@ -141,7 +138,6 @@ next(null, {})
 }
 
 exports.gameFinish = (io,socket,dta,next) => {
-	// eliminar talero activo
 	closeGame(io,dta,next)
 }
 
@@ -209,13 +205,13 @@ exports.getBoard = (io,socket,board,next) => {
 				timesBoards[board._id].times = data
 			})
 		}
-		// empiezan siempre las blancas
+
 		getTimesBoard(board._id)
 		timesBoards[board._id].events.send({type: 'contDown', data: 'white'})
 	}else {
 		getTimesBoard(board._id)
 	}
-	// subcripcion de usuario a la sala sino esta
+
 	if (socket.gameShow) {
 		if (socket.gameShow !== board._id) {
 			socket.leave(socket.gameShow);
@@ -260,7 +256,7 @@ exports.filterViews = (req, res) => {
 exports.stats = (req, res) => {
 	var parms = req.query;
 	getStaticticsUser(parms.user, (err,results) => {
-		// dar formato al resultado
+
 		results = formatResultStatis(results)
 		if (err) {
 			return res.status(500).send(err);
@@ -317,7 +313,7 @@ var getStaticticsUser = (user,next) => {
 			})
 		},
 
- // vs user no pc
+
  whitevsOthersUsers: function(callback) {
  	Board.count(
  	{

@@ -127,7 +127,6 @@ var getToken = function(req, next) {
 			if ((token.payload.exp <= moment().unix())) {
 				next('token_expire')
 			} else {
-				//verificando mismo host de usuario
 				if (token.payload.host !== requestIp.getClientIp(req)) {
 					next('token_host_invalid')
 				} else {

@@ -21,7 +21,7 @@
           <a class="btn waves-effect waves-light col s12 m12 l12"
              @click="nextPuzzle()"
           >
-            Siguiente
+            После
           </a>
         </div>
         <div v-if="!mate && numMoves===0">
@@ -33,7 +33,7 @@
           </a>
         </div>
         <div slot="actions">
-          <a>Intentos {{puzzle.corrects}}/{{puzzle.intents}}</a>
+          <a>Попытки {{puzzle.corrects}}/{{puzzle.intents}}</a>
         </div>
       </md-card>
     </div>

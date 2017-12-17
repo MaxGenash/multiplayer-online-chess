@@ -6,7 +6,7 @@ export default {
   data () {
     var _user = {
       age: 26,
-      sexo: 'mascul',
+      sexo: 'male',
       password: '',
       passwordRepit: '',
       firstName: '',
@@ -21,16 +21,16 @@ export default {
       error: '',
       formValidMsg: {
         password: {
-          success: 'Luce bien',
-          error: 'muy corta'
+          success: 'Придумайте пароль',
+          error: 'err pass'
         },
         passwordRepit: {
-          success: 'Luce bien',
-          error: 'No coincide'
+          success: 'Ок',
+          error: 'Пароли не совпадают'
         },
         user: {
-          success: 'Luce bien',
-          error: 'No menos de 4 ni más de 10'
+          success: 'Ок',
+          error: 'Пароль должен быть длиннее 4 сиволов'
         }
       }
     }
@@ -42,12 +42,11 @@ export default {
   },
   methods: {
     validPassword () {
-      // algoritmo de validacion de passwords
       if (!this.editPassword) {
         return true
       }
       if (this.user.password.length < 5) {
-        this.formValidMsg.errorMsgPasswrd = 'corta la contraseña'
+        this.formValidMsg.errorMsgPasswrd = 'err pass'
         return false
       }
       return true
@@ -71,9 +70,9 @@ export default {
       if (!this.validUser() || !this.repitPasswordValidate() || !this.validPassword()) {
         return
       }
-      this.error = 'procesando'
+      this.error = 'process'
       UserService.signin(this, this.user).then(function (response) {
-        this.error = 'redireccionando'
+        this.error = 'redirect'
         if (this.user._id) {
           window.location.reload()
         } else {
@@ -81,7 +80,6 @@ export default {
         }
       }, function (response) {
         for (var i in response.data.errors) {
-          // mostrando un solo error por el mommento
           this.error = response.data.errors[i].message
         }
       })

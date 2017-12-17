@@ -20,7 +20,7 @@ export default {
           user: somedata
         }
       }.bind(this), function (response) {
-        window.alert('usuario no encontrado')
+        window.alert('not found')
         transition.redirect(UserService.getUser().username)
       })
     }
@@ -72,9 +72,8 @@ export default {
     },
     onFileUpload (file, res) {
       console.log('onFileUpload', file, res)
-      if (this.user.image !== '50x50defaultAvatar.png') {
+      if (this.user.image !== 'avatar.png') {
         UserService.deleteImage(this, {name: this.user.image}).then(function (response) {
-          console.log('eliminado correctamente')
         }, function (response) {
         })
       }
@@ -82,7 +81,7 @@ export default {
       UserService.setUser(this.user)
       UserService.signin(this, {_id: this.user._id, image: this.user.image}).then(function (response) {
       }, function (response) {
-        window.alert('error actualizando imagen usuario')
+        window.alert('error')
       })
     },
     onFileError (file, res) {

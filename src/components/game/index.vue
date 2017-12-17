@@ -155,7 +155,7 @@ export default {
         })
       } else {
         next({
-          image: '50x50defaultAvatar.png'
+          image: 'avatar.png'
         })
       }
     },

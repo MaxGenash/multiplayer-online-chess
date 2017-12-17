@@ -10,6 +10,6 @@ var config = {
     porthttp: process.env.PORT || 3311,
     multicore: false,
     https: true,
-    debug: false
+    debug: true
 }
 module.exports = config;

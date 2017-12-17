@@ -140,9 +140,8 @@ export default {
       clearTimeout(window.computerGame)
       clearInterval(timesColor.white)
       clearInterval(timesColor.black)
-      // cuando se esta visualizando un juego terminado
+
       if (board.wins) {
-        // console.log('visualizando juego terminado')
         this.boardShow = board
         this.historyChange = true
         this.changeStateGame(board)
@@ -166,7 +165,6 @@ export default {
             u1: 'Computer1',
             u2: 'Computer2'
           }
-          // console.log('pc VS pc')
           // this.pcVsPcInit()
         }
       }.bind(this))

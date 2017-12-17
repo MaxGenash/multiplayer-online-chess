@@ -1,8 +1,8 @@
 <div class="col s12">
     <md-modal id="usersConnect">
-        <h4 style="text-align: center">Usuarios conectados</h4>
+        <h4 style="text-align: center">Связанные пользователи</h4>
         <md-input name="search" :value.sync="finduser">
-            Buscar usuario
+            Поиск пользователя
         </md-input>
         <md-collection-list class="col s12 m12 l12">
             <md-collection-list-item class="avatar" v-if="user.username !== u.nickname"
@@ -60,19 +60,19 @@
             <board-history :history="history" :active="active" :humanvspc="isHumanVsPC"></board-history>
         </div>
         <div class="col s12 m12 l12">
-            <md-btn @mouseover="tooltip($event, 'Pieces', 'top')" class="waves-effect waves-light col s2 m2 l2"
+            <md-btn @mouseover="tooltip($event, 'Фигуры', 'top')" class="waves-effect waves-light col s2 m2 l2"
                     @click="changeStyle('pieces')">
                 P
             </md-btn>
-            <md-btn @mouseover="tooltip($event, 'Board', 'top')" class="waves-effect waves-light col s2 m2 l2"
+            <md-btn @mouseover="tooltip($event, 'Доска', 'top')" class="waves-effect waves-light col s2 m2 l2"
                     @click="changeStyle('board')">
                 B
             </md-btn>
-            <md-btn @mouseover="tooltip($event, 'Rendirse', 'top')" class="waves-effect waves-light col s4 m4 l4"
+            <md-btn @mouseover="tooltip($event, 'Сдаться', 'top')" class="waves-effect waves-light col s4 m4 l4"
                     @click="rendir()">
                 {{ $t("game.rend") }}
             </md-btn>
-            <md-btn @mouseover="tooltip($event, 'Cambiar orientacion', 'top')"
+            <md-btn @mouseover="tooltip($event, 'Перевернуть', 'top')"
                     class="waves-effect waves-light col s4 m4 l4" @click="changeOrientation">
                 {{ $t("game.invert") }}
             </md-btn>

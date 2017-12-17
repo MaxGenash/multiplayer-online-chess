@@ -32,7 +32,7 @@
                         </thead>
                         <tr>
                             <td>
-                                Blancas
+                                Белые
                             </td>
                             <td>
                                 {{statsUser.whitevsPC || 0}}
@@ -50,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Negras
+                                Черные
                             </td>
                             <td>
                                 {{statsUser.blackvsPC || 0}}
@@ -68,7 +68,7 @@
                         </tr>
                         <tfoot style="background-color: #5f6161;border-top-style: groove;">
                         <th>
-                            Totales
+                            Всего
                         </th>
                         <th>
                             {{(statsUser.blackvsPC || 0) + (statsUser.whitevsPC || 0)}}
@@ -112,14 +112,14 @@
                                 {{ $t("account.activity.losses") }}
                             </th>
                             <th>
-                                Total
+                                Всего
                             </th>
                         </tr>
 
                         </thead>
                         <tr>
                             <td>
-                                Blancas
+                                Белые
                             </td>
                             <td>
                                 {{statsUser.whitevsOthersUsers || 0}}
@@ -137,7 +137,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Negras
+                                Черные
                             </td>
                             <td>
                                 {{statsUser.blackvsOthersUsers || 0}}
@@ -158,7 +158,7 @@
                         </tr>
                         <tfoot style="background-color: #5f6161;border-top-style: groove;">
                         <th>
-                            Totales
+                            Всего
                         </th>
                         <th>
                             {{(statsUser.blackvsOthersUsers || 0) + (statsUser.whitevsOthersUsers || 0)}}
@@ -244,15 +244,15 @@ export default {
           columns: [
             {
               'type': 'date',
-              'label': 'Fecha'
+              'label': 'Дата'
             },
             {
               'type': 'number',
-              'label': 'Visitas totales'
+              'label': 'Всего посещений'
             },
             {
               'type': 'number',
-              'label': 'Visitas únicas'
+              'label': 'Уинальных посещений'
             }
           ]
         },
@@ -261,23 +261,23 @@ export default {
           columns: [
             {
               'type': 'date',
-              'label': 'Fecha'
+              'label': 'Дата'
             },
             {
               'type': 'number',
-              'label': 'Jugados'
+              'label': 'Партий'
             },
             {
               'type': 'number',
-              'label': 'Ganados'
+              'label': 'Cattle'
             },
             {
               'type': 'number',
-              'label': 'Perdidos'
+              'label': 'Проигрышей'
             },
             {
               'type': 'number',
-              'label': 'Rendido'
+              'label': 'Rendered'
             }
           ]
         }
@@ -288,7 +288,7 @@ export default {
           title: 'Chart Title',
           subtitle: 'Subtitle'
         },
-        hAxis: {title: 'Fecha'},
+        hAxis: {title: 'Дата'},
         vAxis: {title: 'num'},
         height: 500,
         animation: {

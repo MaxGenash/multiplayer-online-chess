@@ -198,7 +198,6 @@ export default {
         }
       }
       this.$socket.emit('event', data, function (...callbacks) {
-        // console.log('conversacion cerrada')
       })
     },
     showBoard (board) {

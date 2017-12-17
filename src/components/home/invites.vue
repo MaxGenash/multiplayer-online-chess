@@ -21,7 +21,7 @@
                                                     alt=""> VS <img style="height: 50px;"
                                                                     src="../../../static/images/pieces/staunton/basic/Black-Queen.png"
                                                                     alt=""> {{ invite.u2 }}</span>
-          <p>Tiempo: {{ invite.time }} minutos {{[invite.event === 'confirmGame'? 'confirmando Iniciar ...': '']}}</p>
+          <p>Период времени: {{ invite.time }} минут {{[invite.event === 'confirmGame'? 'подтвердить игру ...': '']}}</p>
 
           <a class="secondary-content" @click="InviteGameAction(invite)"><i class="material-icons">grade</i></a>
           <a class="secondary-content" style="top: 50px" @click="deleteInvite(invite)"><i

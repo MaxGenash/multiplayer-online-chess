@@ -93,7 +93,7 @@ export default {
         if (((post + 1) >= this.puzzles.length) && ((this.puzzlesType.indexOf(this.puzzleType) + 1) < this.puzzlesType.length)) {
           this.selectPuzzleType(this.puzzlesType[this.puzzlesType.indexOf(this.puzzleType) + 1])
         } else {
-          this.toast('<span>Ya no hay mas</span>', 2000)
+          this.toast('<span>Больше нет</span>', 2000)
         }
       }
     },
@@ -133,7 +133,7 @@ export default {
     addPuzzle (mode) {
       this.mode = mode
       if (!this.puzzleType.type) {
-        this.toast('<span>Selecciona un tipo de puzzle</span>', 2000)
+        this.toast('<span>Выберите тип головоломки</span>', 2000)
         return
       }
       this.$broadcast('modal::open', 'modalCreatePuzzle')
@@ -164,7 +164,6 @@ export default {
     },
     createPuzzle (action) {
       if (action) {
-        // validar que no existe uno similar en db
         var newPuzzle = {
           type: this.puzzleType.type,
           createby: UserService.getUser().username,
@@ -174,14 +173,14 @@ export default {
           mode: this.mode
         }
         PuzzleService.add(this, newPuzzle).then(function (response) {
-          this.toast('<span>Creado correctamente</span>', 3000)
-          // actualizar listado
+          this.toast('<span>Создано</span>', 3000)
+
           this.selectPuzzleType(this.puzzleType)
           // seleccionar actual
           if (this.mode === 'add') {
             this.selectItm(response.data)
           } else {
-            console.log('selecciona otra vez para ver los cambios')
+            console.log('снова выберите, чтобы увидеть изменения')
           }
         }, function (response) {
           this.error = response.data
@@ -200,7 +199,7 @@ export default {
       }.bind(this), 1000)
     },
     delPuzzle () {
-      if (window.confirm('Seguro de eliminar')) {
+      if (window.confirm('Вы уверены?')) {
         PuzzleService.del(this, this.item._id).then(function (response) {
           this.selectPuzzleType(this.puzzleType)
         }, function (response) {
