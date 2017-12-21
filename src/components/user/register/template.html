@@ -57,7 +57,7 @@
                 </md-input>
             </div>
             <div class="row">
-                <p class="flat-text-header">Sexo</p>
+                <p class="flat-text-header">Пол</p>
                 <md-radio-group group="firstNameValid" class="col s6 m6 l6">
                     <md-radio :value.sync="user.sexo" radio-value="f" class="with-gap">
                         {{ $t("register.femen") }}
@@ -67,7 +67,7 @@
                     </md-radio>
                 </md-radio-group>
                 <md-input :value.sync="user.age" type="number" :number="true" class="col s6 m6 l6"
-                          :error-msg="'si tambien'" :valid="user.age < 100 && user.age > 3"
+                          :error-msg="'error'" :valid="user.age < 100 && user.age > 3"
                 >
                     {{ $t("register.age") }}
                 </md-input>
