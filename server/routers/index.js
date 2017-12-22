@@ -1,6 +1,6 @@
 module.exports = function(app, express, io) {
     var controllers = require('../controllers');
-    app.route('/').get(function(req, res) {
+    app.route('/').get(function(req, res) { 
         res.render('client');
     });
 

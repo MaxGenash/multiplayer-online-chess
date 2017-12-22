@@ -54,7 +54,7 @@ Vue.filter('timeBoard', (s) => {
 Vue.filter('moment', (date, format) => {
   return Moment(date).format(format)
 })
-var dirServer = Dev ? 'http://' + window.location.hostname + ':3311' : window.location.origin
+var dirServer = Dev ? 'https://' + window.location.hostname + ':3311' : window.location.origin
 dirServer = Storage.set('serverDir', dirServer)
 if (Storage.get('token')) {
   var socket = SocketIO.connect(Storage.get('serverDir'), { query: 'token=' + 'Bearer ' + Storage.get('token') })

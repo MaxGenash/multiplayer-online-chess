@@ -7,7 +7,7 @@ var User = mongoose.model('users');
 var requestIp = require('request-ip');
 var SECRET_TOKEN= "wrdfcssSTO0"
 
-exports.authenticate = function(req, res) {
+exports.authenticate = function(req, res) { console.log('fucking hell')
 	User.findOne({username: req.body.username}, function(err, user) {
 		if (err) {
 			res.status(500).send('internal_server_error');
