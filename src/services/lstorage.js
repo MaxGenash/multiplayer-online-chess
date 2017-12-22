@@ -5,10 +5,18 @@ export default {
     this.prefix = name
   },
   get (name, value = false) {
-    if (this.lStorage.getItem(this.prefix + '-' + name)) {
-      return JSON.parse(this.lStorage.getItem(this.prefix + '-' + name))
-    } else {
-      return this.set(name, value)
+    try{
+      if (this.lStorage.getItem(this.prefix + '-' + name)) {
+        let data = this.lStorage.getItem(this.prefix + '-' + name)
+        if(data !== 'undefined')
+          return JSON.parse(data)
+        else
+          throw new Error('ls error')
+      } else {
+        return this.set(name, value)
+      }
+    } catch(error){
+      console.log(error)
     }
   },
   set (name, data) {
