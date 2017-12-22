@@ -15,6 +15,7 @@ export default {
       } else {
         return this.set(name, value)
       }
+      return false
     } catch(error){
       console.log(error)
     }

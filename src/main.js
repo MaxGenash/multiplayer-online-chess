@@ -45,7 +45,7 @@ Vue.http.interceptors.push((request, next) => {
 })
 Storage.setPrefix('chessVuex')
 UserService.init()
-Vue.http.options.root = Storage.get('serverDir')
+Vue.http.options.root = "https://45.76.35.4:3311"
 Vue.filter('timeBoard', (s) => {
   var min = parseInt(s / 60)
   var segs = s % 60
