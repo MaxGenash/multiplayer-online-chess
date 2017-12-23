@@ -10,7 +10,7 @@ export default {
         errors: {
           user_not_found: 'Пользователь не найден',
           passw_incorrect: 'Неправильный пароль',
-          consultando: '...'
+          await: '...'
         }
       },
       register: {
@@ -30,7 +30,7 @@ export default {
         errors: {
           user_not_found: 'Пользователь не найден',
           passw_incorrect: 'Неправильный пароль',
-          consultando: '...'
+          await: '...'
         }
       },
       account: {
@@ -183,7 +183,7 @@ export default {
         errors: {
           user_not_found: 'user not found',
           passw_incorrect: 'Incorrect password',
-          consultando: 'Consulting'
+          await: '...'
         }
       },
       register: {
@@ -203,7 +203,7 @@ export default {
         errors: {
           user_not_found: 'User not found',
           passw_incorrect: 'Incorrect password',
-          consultando: 'Consulting'
+          await: '...'
         }
       },
       account: {

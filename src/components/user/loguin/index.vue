@@ -55,12 +55,14 @@ export default {
   },
   methods: {
     userloguin () {
-      this.error = 'consultando'
+      this.error = 'await'
       UserService.authenticate(this, this.user).then(function (response) {
-        Storage.set('token', response.data.token)
-        UserService.setUser(response.data.data)
+        let data = response.data
+        if(typeof data !== 'object') data = JSON.parse(data)
+        Storage.set('token', data.token)
+        UserService.setUser(data.data)
         this.$dispatch('userLoguin', 'user loguin')
-        window.location.reload()
+           window.location.reload()
       }, function (response) {
         this.error = response.data
       })

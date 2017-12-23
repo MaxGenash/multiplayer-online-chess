@@ -20,7 +20,7 @@ export default {
       console.log(error)
     }
   },
-  set (name, data) {
+  set (name, data) { console.log(name,data)
     this.lStorage.setItem(this.prefix + '-' + name, JSON.stringify(data))
     return this.get(name)
   },
