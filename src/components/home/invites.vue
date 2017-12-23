@@ -180,7 +180,7 @@ export default {
     inviteGame (data) {
       this.invitesGame.push(data)
       Store.set('invitesGame', this.invitesGame)
-      this.toast('<span>Tienes una nueva invitacion de juego</span>', 5000)
+      this.toast('<span>У вас новое приглашение в игру</span>', 5000)
     },
     confirmGame (data) {
       if (!this.isAdding(data)) {
@@ -188,7 +188,7 @@ export default {
       }
       Store.set('invitesGame', this.invitesGame)
       this.$broadcast('modal::open', 'invitesGame')
-      this.toast('<span>Invitacion de juego confirmada</span>', 5000)
+      this.toast('<span>Кто-то подтвердил ваше приглашение</span>', 5000)
     },
     initGame (data) {
       // inicializando un tablero
