@@ -68,7 +68,7 @@
                             </a>
                         </div>
                         <md-input name="text" :value.sync="chattext" class="col s9 m9 l10">
-                            Texto
+                            Сообщение
                         </md-input>
                         <md-btn class="btn waves-effect waves-light col s3 m3 l2 send-btn" type="submit">
                             {{ $t("home.send") }}
@@ -92,7 +92,7 @@
                         </md-radio>
                     </md-radio-group>
                 </div>
-                <div class="col s6 m4 l4">
+                <div class="col s6 m6 l6">
 
                     <div class="row s12 m12 l12">
                         <p class="flat-text-header hello">{{ $t("home.createPart.time") }}</p>
@@ -123,13 +123,7 @@
 
                 </div>
 
-                <div class="col s6 m4 l4">
-                    <p class="flat-text-header hello">{{ $t("home.createPart.type") }}</p>
-                    <md-switch :value.sync="newboard.public" disabled>
-                        <span slot="on">{{ $t("home.createPart.public") }}</span>
-                        <span slot="off">{{ $t("home.createPart.private") }}</span>
-                    </md-switch>
-                </div>
+                
             </div>
 <span slot="footer">
   <md-button href="#" class="waves-effect waves-green btn-flat"

@@ -14,7 +14,7 @@
         </a>
       </div>
       <md-collection class="col s12 m12 l12">
-        <md-collection-item class="col s6 m6 l6 avatar" v-for="invite in invitesGame">
+        <md-collection-item class="col s6 m6 l6 avatar" v-for="invite in invitesGame"  @click="InviteGameAction(invite)">
           <img style="top: 20px;" src="/images/avatar.png" alt="" class="circle">
           <span class="title"> {{ invite.u1 }} <img style="height: 50px;"
                                                     src="../../../static/images/pieces/staunton/basic/White-Queen.png"
@@ -23,7 +23,7 @@
                                                                     alt=""> {{ invite.u2 }}</span>
           <p>Период времени: {{ invite.time }} минут {{[invite.event === 'confirmGame'? 'подтвердить игру ...': '']}}</p>
 
-          <a class="secondary-content" @click="InviteGameAction(invite)"><i class="material-icons">grade</i></a>
+          <a class="secondary-content">Принять приглашение</a>
           <a class="secondary-content" style="top: 50px" @click="deleteInvite(invite)"><i
                   class="material-icons">delete</i></a>
         </md-collection-item>
@@ -121,7 +121,7 @@ export default {
         data.f = 'addBoard'
         this.deleteInvite(invite)
       } else {
-        this.toast('<span>Esperando confirmacion de usuario</span>', 2000)
+        this.toast('<span>Ожидание подтверждения пользователя</span>', 2000)
       }
       this.$socket.emit('event', data, function (...callbacks) {
         if (callbacks[0]) {
@@ -136,7 +136,7 @@ export default {
       if (post !== -1) {
         this.invitesGame.splice(post, 1)
         Store.set('invitesGame', this.invitesGame)
-        this.toast('<span>Eliminada correctamente</span>', 2000)
+        this.toast('<span>Приглашение удалено</span>', 2000)
       }
     },
     pcGameInit () {

@@ -11,9 +11,9 @@ module.exports = function(app, express, io) {
         if ('OPTIONS' == req.method) {
             return res.sendStatus(200);
         }
-        if (req.secure) {
+       // if (req.secure) {
             return next();
-        };
+        //};
     });
     var fs = require('fs')
     var walk = function(path) {

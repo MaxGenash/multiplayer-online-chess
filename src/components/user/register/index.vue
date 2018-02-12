@@ -5,13 +5,12 @@ export default {
   template: require('./template.html'),
   data () {
     var _user = {
-      age: 26,
+      age: null,
       sexo: 'male',
       password: '',
       passwordRepit: '',
       firstName: '',
       lastName: '',
-      name: '',
       username: ''
     }
     return {
@@ -21,8 +20,8 @@ export default {
       error: '',
       formValidMsg: {
         password: {
-          success: 'Придумайте пароль',
-          error: 'err pass'
+          success: 'Ok',
+          error: 'Придумайте пароль'
         },
         passwordRepit: {
           success: 'Ок',
@@ -46,7 +45,7 @@ export default {
         return true
       }
       if (this.user.password.length < 5) {
-        this.formValidMsg.errorMsgPasswrd = 'err pass'
+        this.formValidMsg.errorMsgPasswrd = 'Пароль слишком короткий'
         return false
       }
       return true

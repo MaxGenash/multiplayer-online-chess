@@ -18,7 +18,7 @@
             <md-nav-item v-link="{name: 'user',activeClass: 'active', params: {username: user.user.username}}"
                          v-if="user.user">{{ $t("user.title") }}
             </md-nav-item>
-            <md-nav-item v-link="{name: 'loguin',activeClass: 'active'}" v-if="!user.user">{{ $t("user.login") }}
+            <md-nav-item v-link="{name: 'login',activeClass: 'active'}" v-if="!user.user">{{ $t("user.login") }}
             </md-nav-item>
             <md-nav-item @click="logout()" v-if="user.user">{{ $t("user.logout") }}</md-nav-item>
 

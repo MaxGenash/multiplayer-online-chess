@@ -55,8 +55,8 @@ export default {
       },
       home: {
         title: 'Главная',
-        online: 'В сети',
-        played: 'Сыграно',
+        online: 'Игроки в сети',
+        played: 'Публичные матчи',
         upload: 'Файл',
         invite: 'Пригласить',
         send: 'Отправить',
@@ -158,8 +158,8 @@ export default {
         text: 'Сообщение',
         descriptiontext: 'Отправить сообщение',
         turnColor: 'Ходят ',
-        wins: 'Победы',
-        incheck: 'ин чек',
+        wins: 'Побеждают',
+        incheck: 'шах',
         motives: {
           time: 'по времени',
           rendi: 'по капитуляции',

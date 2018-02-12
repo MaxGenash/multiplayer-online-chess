@@ -10,8 +10,7 @@
 	compression = require('compression'),
 	morgan = require("morgan"),
 	jwt = require("jsonwebtoken"),
-	http = require("http"),
- 	https = require('https');
+	http = require("http");
 	let io = socket_io();
 	let
 		address
@@ -33,10 +32,7 @@ if (typeof address == 'undefined') {
 
 module.exports = (appdir,config, cb) => {
 	app.dir = appdir;
-let options = {
- 		key: fs.readFileSync(__dirname+'/../ssl/private.key'),
- 		cert: fs.readFileSync(__dirname+'/../ssl/certificate.pem')
- 	};
+
 
 	app.use((req, res, next) => { 
 	  if (config.debug) {
@@ -46,7 +42,7 @@ let options = {
 	  next();
 	});
 
-	app.use((err, req, res, next) => {
+	app.use((err, req, res, next) => { 
 		console.error(err.stack);
 		res.status(500).send('Something broke!');
 		next();
@@ -71,13 +67,9 @@ let oneYear = 365 * 86400000;
 app.use(express.static(__dirname + '/../public', {maxAge: oneYear}));
 app.set('ipaddr', address);
 app.set('port', config.porthttp);
-require('../routers')(app, express, io);
-var server = https.createServer(options,app);
 
-if (config.multicore){
-var redis = require('socket.io-redis');
-io.adapter(redis({ host: 'localhost', port: 6379 }));	
-}
+require('../routers')(app, express, io);
+var server = http.createServer(app);
 
 io.attach(server);
 

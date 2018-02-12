@@ -7,11 +7,16 @@ export default {
   get (name, value = false) {
     try{
       if (this.lStorage.getItem(this.prefix + '-' + name)) {
-        let data = this.lStorage.getItem(this.prefix + '-' + name)
+        let data = this.lStorage.getItem(this.prefix + '-' + name); console.log(JSON.parse(data))
         if(data !== 'undefined')
-          return JSON.parse(data)
+          data = JSON.parse(data)
         else
           throw new Error('ls error')
+
+        if(name === 'user' && typeof data !== 'object')
+          data = JSON.parse(data)
+        return data
+        
       } else {
         return this.set(name, value)
       }
@@ -20,7 +25,7 @@ export default {
       console.log(error)
     }
   },
-  set (name, data) { console.log(name,data)
+  set (name, data) { 
     this.lStorage.setItem(this.prefix + '-' + name, JSON.stringify(data))
     return this.get(name)
   },

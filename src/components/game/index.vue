@@ -426,7 +426,7 @@ export default {
     rendir () {
       const result = {
         color: this.board.u1 === this.user.username ? 'black' : 'white',
-        motiv: 'rendicion'
+        motiv: 'Пользователь сдался.'
       }
       this.gameFinish(result)
     },

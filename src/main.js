@@ -45,7 +45,9 @@ Vue.http.interceptors.push((request, next) => {
 })
 Storage.setPrefix('chessVuex')
 UserService.init()
-Vue.http.options.root = "https://45.76.35.4:3311"
+Vue.http.options.root = "http://45.76.35.4:3311"
+//Vue.http.options.root = "http://localhost:3311"
+
 Vue.filter('timeBoard', (s) => {
   var min = parseInt(s / 60)
   var segs = s % 60
@@ -54,7 +56,7 @@ Vue.filter('timeBoard', (s) => {
 Vue.filter('moment', (date, format) => {
   return Moment(date).format(format)
 })
-var dirServer = Dev ? 'https://' + window.location.hostname + ':3311' : window.location.origin
+var dirServer = Dev ? 'http://' + window.location.hostname + ':3311' : window.location.origin
 dirServer = Storage.set('serverDir', dirServer)
 if (Storage.get('token')) {
   var socket = SocketIO.connect(Storage.get('serverDir'), { query: 'token=' + 'Bearer ' + Storage.get('token') })
@@ -116,8 +118,8 @@ router.map({
           require(['./components/user/register/'], resolve)
         }
       },
-      '/loguin': {
-        name: 'loguin',
+      '/login': {
+        name: 'login',
         component: UserLoguin
       }
     }

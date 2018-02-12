@@ -21,11 +21,6 @@
                 </md-input>
             </div>
             <div class="row demo">
-                <md-input name="first_name"
-                          :value.sync="user.name"
-                          class="col s12 m4 l4">
-                    {{ $t("register.name") }}
-                </md-input>
                 <md-input name="last_name"
                           :value.sync="user.firstName"
                           class="col s12 m4 l4">
@@ -44,7 +39,7 @@
                     </md-checkbox>
                 </div>
             </div>
-            <div class="row card-panel" v-if="editPassword">
+            <div class="row demo" v-if="editPassword">
                 <md-input type="password" class="col s12 m6 l6" :value.sync="user.password"
                           :success-msg="formValidMsg.password.success" :error-msg="formValidMsg.password.error"
                           :valid="validPassword()">

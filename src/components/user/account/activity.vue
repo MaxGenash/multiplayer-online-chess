@@ -219,7 +219,7 @@ import _ from 'lodash'
 export default {
   route: {
     canActivate: function (transition) {
-      return UserService.user_acces('authenticate') ? true : transition.redirect('user/loguin')
+      return UserService.user_acces('authenticate') ? true : transition.redirect('user/login')
     },
     data (transition) {
       return Promise.all([

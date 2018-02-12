@@ -10,7 +10,7 @@ import toast from 'vue-material-components'
 export default {
   route: {
     canActivate: function (transition) {
-      return UserService.user_acces('authenticate') ? true : transition.redirect('user/loguin')
+      return UserService.user_acces('authenticate') ? true : transition.redirect('user/login')
     }
   },
   template: require('./template.html'),

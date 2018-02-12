@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12" v-cloak>
+  <div class="col s12" v-cloak :class="{hidden:boardShow.u1 === 'Computer1'}">
     <div class="col s12 m12 l6">
       <div class="col s12 m12 l12 card-panel">
         <div class="col s1 m1 l1">
@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       result: {},
-      boardShow: {},
+      boardShow: null,
       ground: 0,
       orientation: 'white',
       history: [],
@@ -246,7 +246,7 @@ export default {
       document.getElementById('frontBoardVisor').style.width = Width + 'px'
       // getFromLocalStorage
       this.loadDataGame(this.board)
-    }.bind(this), 10)
+    }.bind(this), 100)
   }
 }
 </script>
@@ -256,5 +256,7 @@ export default {
   .userTurn {
     background-color: #D8B980;
   }
-
+.hidden{
+  opacity: 0
+}
 </style>
