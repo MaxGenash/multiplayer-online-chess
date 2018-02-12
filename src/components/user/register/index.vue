@@ -29,7 +29,7 @@ export default {
         },
         user: {
           success: 'Ок',
-          error: 'Пароль должен быть длиннее 4 сиволов'
+          error: 'Введите имя латинскими символами'
         }
       }
     }
@@ -39,8 +39,9 @@ export default {
       setUser
     }
   },
-  methods: {
+  computed: {
     validPassword () {
+      if (!this.user.password) return null;
       if (!this.editPassword) {
         return true
       }
@@ -51,6 +52,7 @@ export default {
       return true
     },
     repitPasswordValidate () {
+      if (!this.user.password) return null;
       if (!this.editPassword) {
         return true
       }
@@ -60,13 +62,16 @@ export default {
       return true
     },
     validUser () {
-      if (this.user.username.length < 4 || this.user.username.length > 10) {
+      if (!this.user.username) return null;
+      if (this.user.username.length < 4 || this.user.username.length > 20) {
         return false
       }
       return true
-    },
+    }
+  },
+  methods: {
     registerUser () {
-      if (!this.validUser() || !this.repitPasswordValidate() || !this.validPassword()) {
+      if (!this.validUser || !this.repitPasswordValidate || !this.validPassword) {
         return
       }
       this.error = 'process'
