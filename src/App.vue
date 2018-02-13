@@ -13,8 +13,8 @@
             <!--md-nav-item v-link="{name: 'visor',activeClass: 'active', params: board.boardParms}" v-if="user.user">{{
                 $t("visor.title") }}
             </md-nav-item-->
-            <!-- <md-nav-item v-link="{name: 'puzzle',activeClass: 'active'}" v-if="user.user">{{ $t("puzzles.title") }}
-            </md-nav-item> -->
+            <md-nav-item v-link="{name: 'puzzle',activeClass: 'active'}" v-if="user.user">{{ $t("puzzles.title") }}
+            </md-nav-item>
             <!-- <md-nav-item v-link="{name: 'user',activeClass: 'active', params: {username: user.user.username}}"
                          v-if="user.user">{{ $t("user.title") }}
             </md-nav-item> -->

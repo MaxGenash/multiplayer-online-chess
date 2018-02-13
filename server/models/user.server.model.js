@@ -6,7 +6,6 @@ exports = module.exports = function(mongoose) {
     var UserSchema = new Schema({
         email: {
             type: String,
-            match: [/.+\@.+\..+/, "invalid_email_address"],
             unique: true,
             required: 'email_required'
         },

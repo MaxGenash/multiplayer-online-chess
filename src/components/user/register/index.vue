@@ -30,6 +30,10 @@ export default {
         user: {
           success: 'Ок',
           error: 'Введите имя латинскими символами'
+        },
+        email: {
+          success: 'Ок',
+          error: 'Введите Email-адрес'
         }
       }
     }
@@ -67,11 +71,18 @@ export default {
         return false
       }
       return true
+    },
+    validEmail () {
+      if (!this.user.email) return null
+      if (this.user.email.length < 4 || this.user.email.length > 20) {
+        return false
+      }
+      return true
     }
   },
   methods: {
     registerUser () {
-      if (!this.validUser || !this.repitPasswordValidate || !this.validPassword) {
+      if (!this.validUser || !this.validEmail || !this.repitPasswordValidate || !this.validPassword) {
         return
       }
       this.error = 'process'

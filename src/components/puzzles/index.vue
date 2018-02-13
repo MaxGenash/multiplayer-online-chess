@@ -23,7 +23,7 @@ export default {
           counts: somedata
         }
       }, function (response) {
-        window.alert('no se pudo contar')
+        window.alert('что-то не так')
       })
     }
   },
@@ -44,31 +44,31 @@ export default {
         {
           numMoves: 1,
           type: 'MateIn1',
-          description: 'Las blancas ganan en un movimiento',
+          description: 'Белые побеждают за один ход',
           position: false
         },
         {
           numMoves: 2,
           type: 'MateIn2',
-          description: 'Las blancas ganan en 2 movimientos',
+          description: 'Белые побеждают в двух ходах',
           position: false
         },
         {
           numMoves: 3,
           type: 'MateIn3',
-          description: 'Las blancas ganan en 3 movimientos',
+          description: 'Белые побеждают в трех ходах',
           position: false
         },
         {
           numMoves: 1,
           type: 'FindFork',
-          description: 'Find white move that results in fork',
+          description: 'Найдите ход белыми, который приводит к развилке',
           position: true
         },
         {
           numMoves: 1,
           type: 'TakePiece',
-          description: 'One of Black pieces is undefended. Take it',
+          description: 'Одна из черных фигур не защищена. Заберите ее',
           position: true
         }
       ],
@@ -82,7 +82,7 @@ export default {
     PuzzleChess
   },
   methods: {
-    selectItm (item) {
+    selectItm (item) {  console.log('select',item);
       this.item = item
     },
     nextPuzzle () {
@@ -103,7 +103,10 @@ export default {
         type: puzzle.type
       }
       PuzzleService.get(this, parms).then(function (response) {
-        this.puzzles = response.data
+        let res = response.data
+        if(typeof res !== 'object') res = JSON.parse(response.data)
+        this.puzzles = res
+        console.log(res);
         setTimeout(function () {
           if (this.puzzles.length > 0) {
             this.selectItm(this.puzzles[0])

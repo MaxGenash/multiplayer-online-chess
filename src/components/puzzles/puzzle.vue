@@ -4,19 +4,19 @@
     <div class="col s12 m12 l9" style="padding: 0 0 ">
       <div id='puzzleBoard' style="width: 100%;height: 500px;" class="wood chessground vuejs cburnett"></div>
     </div>
-    <div class="col s12 m12 l3" style="text-align: center" v-show="puzzle.createby">
+    <div class="col s12 m12 l3" v-show="puzzle.createby">
       <md-card class=" darken-1">
-        <h5 class="flat-text-header hello">{{ $t("puzzles.createBy") }} </h5>
-        {{puzzle.createby}}
-        <h5 class="flat-text-header hello">{{ $t("puzzles.date") }}</h5>
-        {{puzzle.created | moment 'MMMM Do YYYY, h:mm:ss a'}}
+        <!-- <h5 class="flat-text-header hello">{{ $t("puzzles.createBy") }} </h5>
+        {{puzzle.createby}} -->
+        <!-- <h5 class="flat-text-header hello">{{ $t("puzzles.date") }}</h5>
+        {{puzzle.created | moment 'MMMM Do YYYY, h:mm:ss a'}} -->
         <h5 class="flat-text-header hello">{{ $t("puzzles.played") }}</h5>
         {{ $t("puzzles.color."+turn) }}
         <h6 class="flat-text-header hello">{{ $t("puzzles.movs") }}</h6>
         {{numMoves}}
         <div v-if="mate && numMoves===0">
           <span>
-            <h3>{{ $t("puzzles.wins") }}</h3>      
+            <h3>{{ $t("puzzles.wins") }}</h3>
           </span>
           <a class="btn waves-effect waves-light col s12 m12 l12"
              @click="nextPuzzle()"
@@ -32,9 +32,9 @@
             {{ $t("puzzles.reintent") }}
           </a>
         </div>
-        <div slot="actions">
+        <!-- <div slot="actions">
           <a>Попытки {{puzzle.corrects}}/{{puzzle.intents}}</a>
-        </div>
+        </div> -->
       </md-card>
     </div>
   </div>

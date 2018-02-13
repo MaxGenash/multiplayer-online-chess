@@ -15,7 +15,10 @@
                 </md-input>
                 <md-input name="last_name"
                           :value.sync="user.email"
-                          class="col s12 m6 l6">
+                          class="col s12 m6 l6"
+                          :success-msg="formValidMsg.email.success"
+                          :error-msg="formValidMsg.email.error"
+                          :valid="validEmail">
                     {{ $t("register.email") }}
                 </md-input>
             </div>

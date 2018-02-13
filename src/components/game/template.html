@@ -38,7 +38,7 @@
                     @click="rendir()">
                 {{ $t("game.rend") }}
             </md-btn>
-            <md-btn 
+            <md-btn
                     class="waves-effect waves-light col s4 m4 l4" @click="changeOrientation">
                 {{ $t("game.invert") }}
             </md-btn>
@@ -51,7 +51,7 @@
         <div id='tablerochess' style="width: 100%;height: 600px;"
              class="{{ stylesBoard['board'][styles['board']] }} chessground vuejs {{ stylesBoard['pieces'][styles['pieces']] }}"></div>
     </div>
-    <div class="col s12 m12 l3">
+    <div class="col s12 m12 l3" v-if="!isHumanVsPC">
         <p style="text-align: center">{{ $t("game.chat") }}</p>
         <div style="height: 65vh;overflow: auto" id="chatConvertGame">
             <body-men :mens="mensjGame" :dir-server="dirServer" :user="user"></body-men>
@@ -91,7 +91,9 @@
             -moz-hyphens: auto;
             word-wrap: break-word;
         }
-
+        .card-panel{
+          padding-top: 10px !important;
+        }
         .userTurn {
             background-color: #D8B980;
         }
