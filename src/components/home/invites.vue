@@ -30,10 +30,10 @@
       </md-collection>
     </md-modal>
     <md-modal id="invitePCGame">
-      <h4 style="text-align: center">HUMAN VS PC</h4>
+      <h4 style="text-align: center">Человек VS Компьютер</h4>
       <div class="col s12 m12 l12">
         <div class="col s6 m4 l4">
-          <p class="flat-text-header hello">Color</p>
+          <p class="flat-text-header hello">Цвет:</p>
           <md-radio-group group="color" class="col s6">
             <md-radio :value.sync="newboard.color" radio-value="w" class="with-gap">
               {{ $t("home.createPart.white") }}
@@ -47,11 +47,11 @@
 <span slot="footer">
   <md-button href="#" class="waves-effect waves-green btn-flat"
              @click="createdVsPcGame(true)">
-  {{ $t("home.createPart.create") }} 
+  {{ $t("home.createPart.create") }}
 </md-button>
 <md-button href="#" class="waves-effect waves-green btn-flat"
            @click="createdVsPcGame(false)">
-{{ $t("home.createPart.cancel") }} 
+{{ $t("home.createPart.cancel") }}
 </md-button>
 </span>
     </md-modal>

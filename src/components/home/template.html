@@ -8,7 +8,7 @@
                 </div>
                 <div slot="body" style="max-height: 70vh;overflow: auto">
                     <md-input name="search" v-if="users.length>20" :value.sync="finduser">
-                        Buscar usuario
+                        Искать пользователя
                     </md-input>
                     <md-collection-list class="col s12 m12 l12">
                         <md-collection-list-item class="avatar" v-for="online in users | filterBy finduser"
@@ -61,7 +61,7 @@
                             <md-linear-preloader :value="fileProgress" v-if="!allFilesUploaded"></md-linear-preloader>
                             <label style="position: relative;float: right;top: -15px" v-if="!allFilesUploaded">{{
                                 fileProgress }}</label>
-                     
+
                             <a class="btn waves-effect waves-light col s3 m3 l3" @click="inviteChessGame()"
                                >
                                 {{ $t("home.invite") }}
@@ -123,7 +123,7 @@
 
                 </div>
 
-                
+
             </div>
 <span slot="footer">
   <md-button href="#" class="waves-effect waves-green btn-flat"

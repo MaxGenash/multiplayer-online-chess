@@ -4,20 +4,20 @@
             <md-dropdown-item v-for="len in lenguajes" closing @click="changeLenguaje(len.value)">{{ len.label }}
             </md-dropdown-item>
         </md-dropdown-list>
-        <md-navbar hamburger mode="hide-on-med-and-down" left nav-class="grey darken-1">
+        <md-navbar left nav-class="grey darken-1">
             <md-nav-item v-link="{name: 'home',activeClass: 'active'}">{{ $t("home.title") }}</md-nav-item>
-         
+
             <md-nav-item v-link="{name: 'game',activeClass: 'active'}">{{ $t("game.title") }}</md-nav-item>
             <md-nav-item @click="showInvitesGame()" v-if="user.user && $route.name!='game'">{{ $t("invites.title") }}
             </md-nav-item>
             <!--md-nav-item v-link="{name: 'visor',activeClass: 'active', params: board.boardParms}" v-if="user.user">{{
                 $t("visor.title") }}
             </md-nav-item-->
-            <!--md-nav-item v-link="{name: 'puzzle',activeClass: 'active'}" v-if="user.user">{{ $t("puzzles.title") }}
-            </md-nav-item-->
-            <md-nav-item v-link="{name: 'user',activeClass: 'active', params: {username: user.user.username}}"
+            <!-- <md-nav-item v-link="{name: 'puzzle',activeClass: 'active'}" v-if="user.user">{{ $t("puzzles.title") }}
+            </md-nav-item> -->
+            <!-- <md-nav-item v-link="{name: 'user',activeClass: 'active', params: {username: user.user.username}}"
                          v-if="user.user">{{ $t("user.title") }}
-            </md-nav-item>
+            </md-nav-item> -->
             <md-nav-item v-link="{name: 'login',activeClass: 'active'}" v-if="!user.user">{{ $t("user.login") }}
             </md-nav-item>
             <md-nav-item @click="logout()" v-if="user.user">{{ $t("user.logout") }}</md-nav-item>
@@ -28,7 +28,7 @@
             </md-nav-item>
         </md-navbar>
         <div>
-           
+
             <user-invites></user-invites>
         </div>
         <div class="row" style="padding: 20px">
@@ -131,4 +131,3 @@ export default {
   store
 }
 </script>
-
