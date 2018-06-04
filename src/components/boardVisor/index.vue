@@ -35,10 +35,10 @@ export default {
   },
   methods: {
     updateRouter () {
-      var u1 = this.filters.u1 === '' ? 'all' : this.filters.u1
-      var u2 = this.filters.u2 === '' ? 'all' : this.filters.u2
-      var newUrl = '/visor/' + this.boardView._id + '/' + this.skip + '/' + u1 + '/' + u2
-      this.$route.router.replace(newUrl)
+      var u1 = this.filters.u1 === '' ? 'all' : this.filters.u1;
+      var u2 = this.filters.u2 === '' ? 'all' : this.filters.u2;
+      var newUrl = '/visor/' + this.boardView._id + '/' + this.skip + '/' + u1 + '/' + u2;
+      this.$route.router.replace(newUrl);
       Board.setParms({
         u1: u1,
         u2: u2,
@@ -51,11 +51,11 @@ export default {
         filters: this.filters,
         limit: this.limit,
         skip: this.skip
-      }
+      };
       Board.filter(this, filters).then(function (response) {
-        this.foundList = response.data.documents
-        this.totalRecords = response.data.total
-        this.updateRouter()
+        this.foundList = response.data.documents;
+        this.totalRecords = response.data.total;
+        this.updateRouter();
         if (this.boardSelect !== this.boardView._id) {
           for (var i in this.foundList) {
             if (this.foundList[i]._id === this.boardSelect) {
@@ -68,8 +68,8 @@ export default {
       })
     },
     selectBoard (board) {
-      this.boardView = board
-      Store.set('boardView', board)
+      this.boardView = board;
+      Store.set('boardView', board);
       this.updateRouter()
     }
   },

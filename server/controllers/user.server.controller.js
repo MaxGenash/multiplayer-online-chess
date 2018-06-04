@@ -1,11 +1,11 @@
-var jwt = require("jsonwebtoken");
-var bcrypt = require('bcrypt-nodejs');
-var moment = require('moment');
-var async = require('async');
-var mongoose = require('mongoose');
-var User = mongoose.model('users');
-var requestIp = require('request-ip');
-var SECRET_TOKEN= "wrdfcssSTO0"
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt-nodejs');
+const moment = require('moment');
+const async = require('async');
+const mongoose = require('mongoose');
+const User = mongoose.model('users');
+const requestIp = require('request-ip');
+const SECRET_TOKEN= "wrdfcssSTO0";
 
 exports.authenticate = function(req, res) { 
 	User.findOne({username: req.body.username}, function(err, user) {
@@ -183,8 +183,6 @@ var InstallInit = function() {
 				userModel.save(function(err, user) {
 				    console.log(user);
 				})
-
-				
 			}
 		})
 	}, 3000);

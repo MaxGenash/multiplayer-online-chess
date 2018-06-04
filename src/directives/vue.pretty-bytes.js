@@ -6,10 +6,10 @@ Vue.filter('prettyBytes', function (num) {
     throw new TypeError('Expected a number');
   }
 
-  var exponent;
-  var unit;
-  var neg = num < 0;
-  var units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  let exponent;
+  let unit;
+  let neg = num < 0;
+  let units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
   if (neg) {
     num = -num;

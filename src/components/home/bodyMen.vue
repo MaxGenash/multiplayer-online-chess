@@ -39,14 +39,14 @@ export default {
   },
   methods: {
     openInNewTab (name) {
-      var win = window.open(this.dirServer + '/uploads/' + name, '_blank')
+      var win = window.open(this.dirServer + '/uploads/' + name, '_blank');
       win.focus()
     },
     imageUrl (name) {
       return this.dirServer + '/uploads/' + name
     },
     isImage (file) {
-      var type = '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|'
+      var type = '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
       return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1
     }
   }

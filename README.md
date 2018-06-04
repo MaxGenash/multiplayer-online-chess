@@ -1,4 +1,4 @@
-VueChess
+MultiplayerOnlineChess
 ========
 
  - Users can create private or public games against other  real-time
@@ -28,11 +28,6 @@ Images
 
 *in progress*
 
-Todo
-------
-
-- Load balancing work with redis. (Cooking with deepstream and nuxts)
-- Load pgn file.
 
 ## Install nodejs and mongodb
 

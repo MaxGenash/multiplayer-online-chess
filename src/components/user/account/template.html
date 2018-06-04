@@ -10,12 +10,12 @@
                         <img v-if="$route.name!=='edituser'" style="width: 100%;" v-bind:src="imageUrl(user.image)">
 
                         <upload-files
-                                v-if="$route.name==='edituser'"
-                                :value.sync="filesUpload"
-                                name="files"
-                                :action="dirActionUpload"
-                                maxsize="10"
-                                pathpermit="|jpeg|png|gif"
+                          v-if="$route.name==='edituser'"
+                          :value.sync="filesUpload"
+                          name="files"
+                          :action="dirActionUpload"
+                          maxsize="10"
+                          pathpermit="|jpeg|png|gif"
                         >
                             <md-icon right>edit</md-icon>
                             <img style="width: 100%;" v-bind:src="imageUrl(user.image)">
@@ -31,10 +31,6 @@
                     </md-collection-item>
                     <md-collection-item v-link="{name: 'activity',activeClass: 'active'}">
                         {{ $t("account.activity.title") }}
-                        <md-icon slot="secondary-content">send</md-icon>
-                    </md-collection-item>
-                    <md-collection-item>
-                        Настройки
                         <md-icon slot="secondary-content">send</md-icon>
                     </md-collection-item>
                 </md-collection>

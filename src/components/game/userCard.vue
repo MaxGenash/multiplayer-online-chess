@@ -42,8 +42,8 @@ export default {
   },
   filters: {
     boardTime (s) {
-      var min = parseInt(s / 60)
-      var segs = s % 60
+      var min = parseInt(s / 60);
+      var segs = s % 60;
       return this.pad(min, -2) + ':' + this.pad(segs, -2)
     }
   },

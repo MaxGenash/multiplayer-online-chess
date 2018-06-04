@@ -3,7 +3,7 @@ const state = {
   turn: 'none',
   twhite: 60 * 1,
   tblack: 60 * 1
-}
+};
 const mutations = {
   MOVE (state, newPgn) {
     state.pgn = newPgn
@@ -14,7 +14,7 @@ const mutations = {
   COUNTDOWN (state, time, color) {
     state['t' + color] = time
   }
-}
+};
 
 export default {
   state,

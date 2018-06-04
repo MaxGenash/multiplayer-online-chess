@@ -30,7 +30,7 @@
 </template>
 
 <script>
-var playEvent = 1
+var playEvent = 1;
 export default {
   name: 'BoardHistory',
   props: {
@@ -63,31 +63,31 @@ export default {
     },
     moveToHistory (index) {
       if (index < 0 || index > this.history.length - 1) {
-        clearInterval(playEvent)
-        this.played = false
+        clearInterval(playEvent);
+        this.played = false;
         return
       }
-      this.select = index
-      var pgnReturn = ''
-      var jugada = 0
+      this.select = index;
+      var pgnReturn = '';
+      var jugada = 0;
       for (var i = 0; i <= index; i++) {
         if (i % 2 === 0) {
-          jugada++
+          jugada++;
           pgnReturn += jugada + '. '
         }
         pgnReturn += this.history[i].san + ' '
       }
       if (!this.active) {
-        this.$dispatch('move', {pgn: pgnReturn})
+        this.$dispatch('move', {pgn: pgnReturn});
         return
       }
       if (this.humanvspc()) {
-        this.$dispatch('move', {pgn: pgnReturn})
-        return
+        this.$dispatch('move', {pgn: pgnReturn});
+
       }
     },
     play () {
-      this.played = !this.played
+      this.played = !this.played;
       if (this.played) {
         playEvent = setInterval(function () {
           this.moveToHistory(this.select + 1)
@@ -99,8 +99,8 @@ export default {
   },
   watch: {
     velo (newVal, oldVal) {
-      clearInterval(playEvent)
-      this.played = false
+      clearInterval(playEvent);
+      this.played = false;
       this.play()
     }
   }

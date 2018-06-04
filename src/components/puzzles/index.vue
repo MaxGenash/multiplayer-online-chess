@@ -6,8 +6,8 @@ import PuzzleService from '../../services/puzzle'
 import Chess from 'chess.js'
 import toast from 'vue-material-components'
 import Jquery from 'jquery'
-var groundInit = 1
-var groundFinish = 1
+var groundInit = 1;
+var groundFinish = 1;
 export default {
   route: {
     canActivate: function (transition) {
@@ -17,8 +17,8 @@ export default {
       return Promise.all([
         PuzzleService.count(this)
       ]).then(function (data) {
-        const somedata = data[0].data
-        console.log(somedata)
+        const somedata = data[0].data;
+        console.log(somedata);
         return {
           counts: somedata
         }
@@ -86,7 +86,7 @@ export default {
       this.item = item
     },
     nextPuzzle () {
-      var post = this.puzzles.indexOf(this.item)
+      var post = this.puzzles.indexOf(this.item);
       if (post !== -1 && (post + 1) < this.puzzles.length) {
         this.selectItm(this.puzzles[post + 1])
       } else {
@@ -98,14 +98,14 @@ export default {
       }
     },
     selectPuzzleType (puzzle) {
-      this.puzzleType = puzzle
+      this.puzzleType = puzzle;
       var parms = {
         type: puzzle.type
-      }
+      };
       PuzzleService.get(this, parms).then(function (response) {
-        let res = response.data
-        if(typeof res !== 'object') res = JSON.parse(response.data)
-        this.puzzles = res
+        let res = response.data;
+        if(typeof res !== 'object') res = JSON.parse(response.data);
+        this.puzzles = res;
         console.log(res);
         setTimeout(function () {
           if (this.puzzles.length > 0) {
@@ -123,23 +123,23 @@ export default {
       this.chess.move({
         from: orig,
         to: dest
-      })
+      });
       this.fenInit = groundInit.getFen()
     },
     updateFenFinish (orig, dest) {
       this.chess.move({
         from: orig,
         to: dest
-      })
+      });
       this.fenFinish = groundFinish.getFen()
     },
     addPuzzle (mode) {
-      this.mode = mode
+      this.mode = mode;
       if (!this.puzzleType.type) {
-        this.toast('<span>Выберите тип головоломки</span>', 2000)
+        this.toast('<span>Выберите тип головоломки</span>', 2000);
         return
       }
-      this.$broadcast('modal::open', 'modalCreatePuzzle')
+      this.$broadcast('modal::open', 'modalCreatePuzzle');
       var options = {
         fen: this.fenInit,
         orientation: 'white',
@@ -148,9 +148,9 @@ export default {
             after: this.updateFenInit
           }
         }
-      }
+      };
       setTimeout(function () {
-        groundInit = Chessground(document.getElementById('puzzleGenerateFenInit'), options)
+        groundInit = Chessground(document.getElementById('puzzleGenerateFenInit'), options);
         if (this.puzzleType.position) {
           var optionsF = {
             fen: this.fenFinish,
@@ -160,7 +160,7 @@ export default {
                 after: this.updateFenFinish
               }
             }
-          }
+          };
           groundFinish = Chessground(document.getElementById('puzzleGenerateFenFinish'), optionsF)
         }
       }.bind(this), 100)
@@ -174,11 +174,11 @@ export default {
           fenfinish: this.fenFinish,
           nummoves: this.puzzleType.numMoves,
           mode: this.mode
-        }
+        };
         PuzzleService.add(this, newPuzzle).then(function (response) {
-          this.toast('<span>Создано</span>', 3000)
+          this.toast('<span>Создано</span>', 3000);
 
-          this.selectPuzzleType(this.puzzleType)
+          this.selectPuzzleType(this.puzzleType);
           // seleccionar actual
           if (this.mode === 'add') {
             this.selectItm(response.data)
@@ -186,16 +186,16 @@ export default {
             console.log('снова выберите, чтобы увидеть изменения')
           }
         }, function (response) {
-          this.error = response.data
+          this.error = response.data;
           console.log(response.data)
         })
       }
       this.$broadcast('modal::close', 'some', 'modalCreatePuzzle')
     },
     editPuzzle () {
-      this.addPuzzle(this.item._id)
+      this.addPuzzle(this.item._id);
       setTimeout(function () {
-        this.fenInit = this.item.feninit
+        this.fenInit = this.item.feninit;
         if (this.item.fenfinish) {
           this.fenFinish = this.item.fenfinish
         }

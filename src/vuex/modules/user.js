@@ -1,6 +1,6 @@
 const state = {
   user: {}
-}
+};
 const mutations = {
   SETUSER (state, newValue, key) {
     if (key) {
@@ -9,7 +9,7 @@ const mutations = {
       state.user = newValue
     }
   }
-}
+};
 
 export default {
   state,

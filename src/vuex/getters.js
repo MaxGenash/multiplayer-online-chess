@@ -11,6 +11,6 @@ export function getGameTimesUsers (state) {
   const times = {
     white: state.boards.twhite,
     black: state.boards.tblack
-  }
+  };
   return times
 }

@@ -300,12 +300,12 @@ export default {
   },
   computed: {
     rows () {
-      var statKeys = this.statSets[this.activeSet].rows
+      var statKeys = this.statSets[this.activeSet].rows;
       return _
         .chain(this.datachart)
         .mapValues(function (stat) {
-          var picked = _.pick(stat, statKeys)
-          picked['date'] = new Date(picked['date'])
+          var picked = _.pick(stat, statKeys);
+          picked['date'] = new Date(picked['date']);
           return _.values(picked)
         })
       .toArray()

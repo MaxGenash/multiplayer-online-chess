@@ -44,7 +44,7 @@
 <script>
 import Chessground from 'chessground'
 import Chess from 'chess.js'
-import Garbochess from 'garbochess'
+import Garbochess from '../../../copy_in_node_modules/garbochess'
 import PuzzleService from '../../services/puzzle'
 export default {
   name: 'puzzleChess',
@@ -72,11 +72,11 @@ export default {
   },
   methods: {
     chessToDests (chess) {
-      var dests = {}
+      var dests = {};
       chess.SQUARES.forEach(function (s) {
-        var ms = chess.moves({square: s, verbose: true})
+        var ms = chess.moves({square: s, verbose: true});
         if (ms.length) dests[s] = ms.map(function (m) { return m.to })
-      })
+      });
       return dests
     },
     resolvePuzzle (parms) {
@@ -87,19 +87,19 @@ export default {
       })
     },
     chessToColor (chess) {
-      var t = chess.turn()
-      var turn = (t === 'w') ? 'white' : 'black'
-      this.turn = turn
+      var t = chess.turn();
+      var turn = (t === 'w') ? 'white' : 'black';
+      this.turn = turn;
       return turn
     },
     onMove (orig, dest) {
-      this.numMoves --
+      this.numMoves --;
       this.chess.move({
         from: orig,
         to: dest,
         promotion: 'q'
-      })
-      this.ground.move(orig, dest)
+      });
+      this.ground.move(orig, dest);
       this.ground.set({
         fen: this.chess.fen(),
         turnColor: this.chessToColor(this.chess),
@@ -107,7 +107,7 @@ export default {
           color: this.chessToColor(this.chess),
           dests: this.chessToDests(this.chess)
         }
-      })
+      });
       if (this.numMoves <= 0) {
         if (this.puzzle.type === 'FindFork' || this.puzzle.type === 'TakePiece') {
           // verificar que fen actual es la esperada
@@ -116,17 +116,17 @@ export default {
         } else {
           this.mate = this.isFinish(this.chess)
         }
-        this.ground.stop()
+        this.ground.stop();
         this.resolvePuzzle({_id: this.puzzle._id, resolve: this.mate ? 1 : 0})
       } else {
         this.movePC(this.turn)
       }
     },
     PcIngeniesMove (move) {
-      var from = move & 0xFF
-      var to = (move >> 8) & 0xFF
-      var sfrom = Garbochess.FormatSquare(from)
-      var sto = Garbochess.FormatSquare(to)
+      var from = move & 0xFF;
+      var to = (move >> 8) & 0xFF;
+      var sfrom = Garbochess.FormatSquare(from);
+      var sto = Garbochess.FormatSquare(to);
       this.onMove(sfrom, sto)
     },
     movePC (turn) {
@@ -142,24 +142,24 @@ export default {
         this.makeRandomMove()
       } else {
         // use garbochess ingenie (dando problemas con los flags)
-        Garbochess.InitializeFromFen(fen)
+        Garbochess.InitializeFromFen(fen);
         Garbochess.Search(this.PcIngeniesMove, 5, null)
       }
     },
     makeRandomMove () {
       var possibleMoves = this.chess.moves({
         verbose: true
-      })
-      var randomIndex = Math.floor(Math.random() * possibleMoves.length)
-      var move = possibleMoves[randomIndex]
-      var from = move.from
-      var to = move.to
+      });
+      var randomIndex = Math.floor(Math.random() * possibleMoves.length);
+      var move = possibleMoves[randomIndex];
+      var from = move.from;
+      var to = move.to;
       this.onMove(from, to)
     },
     loadPuzzle (fen) {
-      this.numMoves = (parseInt(this.puzzle.nummoves) * 2) - 1
+      this.numMoves = (parseInt(this.puzzle.nummoves) * 2) - 1;
       if (fen) {
-        this.chess.load(fen + ' ' + 'w KQ - 21 20')
+        this.chess.load(fen + ' ' + 'w KQ - 21 20');
         this.ground.set({
           fen: this.chess.fen(),
           turnColor: this.chessToColor(this.chess),
@@ -167,7 +167,7 @@ export default {
             color: this.chessToColor(this.chess),
             dests: this.chessToDests(this.chess)
           }
-        })
+        });
         this.movePC(this.turn)
       }
     },
@@ -175,12 +175,12 @@ export default {
       return chess.game_over()
     },
     reintent () {
-      this.mate = false
+      this.mate = false;
       this.loadPuzzle(this.puzzle.feninit)
     }
   },
   created () {
-    Garbochess.ResetGame()
+    Garbochess.ResetGame();
     var options = {
       orientation: 'white',
       movable: {
@@ -193,14 +193,14 @@ export default {
           after: this.onMove
         }
       }
-    }
+    };
     setTimeout(function () {
-      this.ground = Chessground(document.getElementById('puzzleBoard'), options)
-      var Width = document.getElementById('puzzleBoard').clientWidth
-      document.getElementById('puzzleBoard').style.height = Width + 'px'
-      document.getElementById('puzzleBoard').style.width = Width + 'px'
+      this.ground = Chessground(document.getElementById('puzzleBoard'), options);
+      var Width = document.getElementById('puzzleBoard').clientWidth;
+      document.getElementById('puzzleBoard').style.height = Width + 'px';
+      document.getElementById('puzzleBoard').style.width = Width + 'px';
       // getFromLocalStorage
-      console.log('cargando board')
+      console.log('cargando board');
       this.loadPuzzle()
     }.bind(this), 10)
   },

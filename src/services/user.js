@@ -31,7 +31,7 @@ export default {
     return ctx.$http.post(Storage.get('serverDir') + '/user/test', data)
   },
   logout () {
-    Storage.clearLocal(true)
+    Storage.clearLocal(true);
     this.user = null
   },
   init () {

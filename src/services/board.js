@@ -7,7 +7,7 @@ export default {
     return ctx.$http.get(Storage.get('serverDir') + '/board/stats' + this.urlGetParms(data))
   },
   urlGetParms (data) {
-    var parms = '?'
+    var parms = '?';
     for (var key in data) {
       parms += (parms === '?' ? '' : '&') + key + '=' + data[key]
     }
@@ -15,7 +15,7 @@ export default {
   },
   boardParms: Storage.get('parmsBoard'),
   setParms (parms) {
-    this.boardParms = parms
+    this.boardParms = parms;
     Storage.set('parmsBoard', parms)
   }
 }

@@ -8,7 +8,7 @@
             <md-nav-item v-link="{name: 'home',activeClass: 'active'}">{{ $t("home.title") }}</md-nav-item>
 
             <md-nav-item v-link="{name: 'game',activeClass: 'active'}">{{ $t("game.title") }}</md-nav-item>
-            <md-nav-item @click="showInvitesGame()" v-if="user.user && $route.name!='game'">{{ $t("invites.title") }}
+            <md-nav-item @click="showInvitesGame()" v-if="user.user && $route.name!=='game'">{{ $t("invites.title") }}
             </md-nav-item>
             <!--md-nav-item v-link="{name: 'visor',activeClass: 'active', params: board.boardParms}" v-if="user.user">{{
                 $t("visor.title") }}
@@ -28,7 +28,6 @@
             </md-nav-item>
         </md-navbar>
         <div>
-
             <user-invites></user-invites>
         </div>
         <div class="row" style="padding: 20px">
@@ -65,7 +64,7 @@ export default {
     },
     changeLenguaje (len) {
       if (this.lenguaje !== len) {
-        Store.set('lenguaje', len)
+        Store.set('lenguaje', len);
         window.location.reload()
       }
     },
@@ -84,7 +83,7 @@ export default {
     testUser (next) {
       if (Store.get('token')) {
         UserService.testUser(this, {}).then(function (response) {
-          UserService.setUser(response.data)
+          UserService.setUser(response.data);
           next()
         }, function (response) {
           // next()
@@ -100,7 +99,7 @@ export default {
           data: {
             user: UserService.getUser()
           }
-        }
+        };
         setTimeout(function () {
           this.$socket.emit('event', data, function (...callbacks) {
             // console.log(callbacks[1])
@@ -122,7 +121,7 @@ export default {
   created () {
     this.testUser(function () {
       this.userLoguinSocket()
-    }.bind(this))
+    }.bind(this));
     this.getLenguajeName()
   },
   components: {

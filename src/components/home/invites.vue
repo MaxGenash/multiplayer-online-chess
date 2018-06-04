@@ -15,7 +15,7 @@
       </div>
       <md-collection class="col s12 m12 l12">
         <md-collection-item class="col s6 m6 l6 avatar" v-for="invite in invitesGame"  @click="InviteGameAction(invite)">
-          <img style="top: 20px;" src="/images/avatar.png" alt="" class="circle">
+          <img style="top: 20px;" src="/static/images/avatar.png" alt="" class="circle">
           <span class="title"> {{ invite.u1 }} <img style="height: 50px;"
                                                     src="../../../static/images/pieces/staunton/basic/White-Queen.png"
                                                     alt=""> VS <img style="height: 50px;"
@@ -86,16 +86,16 @@ export default {
   ],
   methods: {
     initGame (game) {
-      this.$route.router.go('/')
-      Store.set('board', game)
-      this.$broadcast('modal::open', 'initGame')
-      var setIn = 1
-      this.$broadcast('modal::close', 'some', 'invitesGame')
+      this.$route.router.go('/');
+      Store.set('board', game);
+      this.$broadcast('modal::open', 'initGame');
+      var setIn = 1;
+      this.$broadcast('modal::close', 'some', 'invitesGame');
       setIn = setInterval(function () {
         if ((this.counterInitGame - 1) === 0) {
-          clearInterval(setIn)
-          this.$broadcast('modal::close', 'some', 'initGame')
-          this.counterInitGame = 3
+          clearInterval(setIn);
+          this.$broadcast('modal::close', 'some', 'initGame');
+          this.counterInitGame = 3;
           this.$route.router.go('/game')
         } else {
           this.counterInitGame --
@@ -104,7 +104,7 @@ export default {
     },
     testUser (next) {
       UserService.testUser(this, {}).then(function (response) {
-        UserService.setUser(response.data)
+        UserService.setUser(response.data);
         next()
       }, function (response) {
         this.error = response.data
@@ -116,9 +116,9 @@ export default {
         c: 'board',
         f: 'confirmGame',
         data: invite
-      }
+      };
       if (invite.confirm || invite.vsPc) {
-        data.f = 'addBoard'
+        data.f = 'addBoard';
         this.deleteInvite(invite)
       } else {
         this.toast('<span>Ожидание подтверждения пользователя</span>', 2000)
@@ -132,23 +132,23 @@ export default {
       // eliminar invitacion del arreglo
     },
     deleteInvite (invite) {
-      var post = this.invitesGame.indexOf(invite)
+      var post = this.invitesGame.indexOf(invite);
       if (post !== -1) {
-        this.invitesGame.splice(post, 1)
-        Store.set('invitesGame', this.invitesGame)
+        this.invitesGame.splice(post, 1);
+        Store.set('invitesGame', this.invitesGame);
         this.toast('<span>Приглашение удалено</span>', 2000)
       }
     },
     pcGameInit () {
-      this.$broadcast('modal::open', 'invitePCGame')
+      this.$broadcast('modal::open', 'invitePCGame');
       this.$broadcast('modal::close', 'some', 'invitesGame')
     },
     createdVsPcGame (state) {
       if (!state) {
-        this.$broadcast('modal::close', 'some', 'invitePCGame')
+        this.$broadcast('modal::close', 'some', 'invitePCGame');
         return
       }
-      this.$broadcast('modal::close', 'some', 'invitePCGame')
+      this.$broadcast('modal::close', 'some', 'invitePCGame');
       var invite = {
         u1: '',
         u2: '',
@@ -157,12 +157,12 @@ export default {
         time: '30',
         confirm: false,
         created: new Date().getTime()
-      }
+      };
       if (this.newboard.color === 'w') {
-        invite.u1 = UserService.user.username
+        invite.u1 = UserService.user.username;
         invite.u2 = 'PC'
       } else {
-        invite.u2 = UserService.user.username
+        invite.u2 = UserService.user.username;
         invite.u1 = 'PC'
       }
       this.InviteGameAction(invite)
@@ -178,16 +178,16 @@ export default {
   },
   events: {
     inviteGame (data) {
-      this.invitesGame.push(data)
-      Store.set('invitesGame', this.invitesGame)
+      this.invitesGame.push(data);
+      Store.set('invitesGame', this.invitesGame);
       this.toast('<span>У вас новое приглашение в игру</span>', 5000)
     },
     confirmGame (data) {
       if (!this.isAdding(data)) {
         this.invitesGame.push(data)
       }
-      Store.set('invitesGame', this.invitesGame)
-      this.$broadcast('modal::open', 'invitesGame')
+      Store.set('invitesGame', this.invitesGame);
+      this.$broadcast('modal::open', 'invitesGame');
       this.toast('<span>Кто-то подтвердил ваше приглашение</span>', 5000)
     },
     initGame (data) {

@@ -12,7 +12,7 @@ export default {
       firstName: '',
       lastName: '',
       username: ''
-    }
+    };
     return {
       editPassword: true,
       formValid: false,
@@ -50,7 +50,7 @@ export default {
         return true
       }
       if (this.user.password.length < 5) {
-        this.formValidMsg.errorMsgPasswrd = 'Пароль слишком короткий'
+        this.formValidMsg.errorMsgPasswrd = 'Пароль слишком короткий';
         return false
       }
       return true
@@ -73,7 +73,7 @@ export default {
       return true
     },
     validEmail () {
-      if (!this.user.email) return null
+      if (!this.user.email) return null;
       if (this.user.email.length < 4 || this.user.email.length > 20) {
         return false
       }
@@ -85,9 +85,9 @@ export default {
       if (!this.validUser || !this.validEmail || !this.repitPasswordValidate || !this.validPassword) {
         return
       }
-      this.error = 'process'
+      this.error = 'process';
       UserService.signin(this, this.user).then(function (response) {
-        this.error = 'redirect'
+        this.error = 'redirect';
         if (this.user._id) {
           window.location.reload()
         } else {

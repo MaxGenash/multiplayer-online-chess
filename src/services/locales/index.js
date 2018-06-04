@@ -1,5 +1,8 @@
 export default {
   i18n: {
+    ua: {
+      title: 'Вхід',
+    },
     ru: {
       login: {
         title: 'Вход',

@@ -21,7 +21,6 @@
                             </a>
                         </md-collection-list-item>
                     </md-collection-list>
-
                 </div>
             </md-collapsible-item>
             <md-collapsible-item name="two">
@@ -33,11 +32,20 @@
                     <div slot="body" style="max-height: 70vh;overflow: auto">
                         <md-collection>
                             <md-collection-item v-for="game in boards" @click="showBoard(game)">
-                                <span class="title"> {{ game.u1 }} <img style="height: 25px;"
-                                                                        src="../../../static/images/pieces/merida/wQ.svg"
-                                                                        alt=""> VS <img style="height: 25px;"
-                                                                                        src="../../../static/images/pieces/merida/bQ.svg"
-                                                                                        alt=""> {{ game.u2 }}</span>
+                                <span class="title"> {{ game.u1 }}
+                                    <img
+                                      style="height: 25px;"
+                                      src="../../../static/images/pieces/merida/wQ.svg"
+                                      alt=""
+                                    >
+                                    VS
+                                    <img
+                                      style="height: 25px;"
+                                      src="../../../static/images/pieces/merida/bQ.svg"
+                                      alt=""
+                                    >
+                                    {{ game.u2 }}
+                                </span>
                             </md-collection-item>
                         </md-collection>
                     </div>
@@ -63,7 +71,7 @@
                                 fileProgress }}</label>
 
                             <a class="btn waves-effect waves-light col s3 m3 l3" @click="inviteChessGame()"
-                               >
+                            >
                                 {{ $t("home.invite") }}
                             </a>
                         </div>
@@ -125,7 +133,7 @@
 
 
             </div>
-<span slot="footer">
+            <span slot="footer">
   <md-button href="#" class="waves-effect waves-green btn-flat"
              @click="createdInviteGame(true)">
   {{ $t("home.createPart.create") }}

@@ -44,13 +44,13 @@
 <script>
 import Chess from 'chess.js'
 import Chessground from 'chessground'
-import Garbochess from 'garbochess'
+import Garbochess from '../../../copy_in_node_modules/garbochess'
 import BoardHistory from '../game/boardHistory'
 var timesColor = {
   white: 1,
   black: 1
-}
-window.computerGame = 1
+};
+window.computerGame = 1;
 export default {
   name: 'BoardVisor',
   props: {
@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       result: {},
-      boardShow: null,
+      boardShow: {},
       ground: 0,
       orientation: 'white',
       history: [],
@@ -84,11 +84,11 @@ export default {
       if (this.boardShow.wins && board.idBoard) {
         return
       }
-      this.historyChange = false
+      this.historyChange = false;
       if (board.idBoard) {
         this.historyChange = true
       }
-      this.changeStateGame(board)
+      this.changeStateGame(board);
       if (board.times) {
         this.times = board.times
       }
@@ -102,13 +102,13 @@ export default {
       this.result = {
         wins: state.result.color,
         motiv: state.result.motiv
-      }
-      clearInterval(timesColor.black)
+      };
+      clearInterval(timesColor.black);
       clearInterval(timesColor.white)
     },
     changeStateGame (board) {
-      this.pgn = board.pgn
-      this.chess.load_pgn(board.pgn)
+      this.pgn = board.pgn;
+      this.chess.load_pgn(board.pgn);
       // console.log(this.chess.undo())
       if (board.move) {
         this.ground.move(board.move.from, board.move.to)
@@ -116,49 +116,49 @@ export default {
       this.ground.set({
         fen: this.chess.fen(),
         orientation: this.orientation
-      })
-      this.chessToColor(this.chess)
+      });
+      this.chessToColor(this.chess);
       if (this.historyChange) {
         this.history = this.chess.history({ verbose: true })
       }
     },
     countDown () {
       timesColor[this.turn] = setInterval(function () {
-        this.times[this.turn] = this.times[this.turn] - 1
+        this.times[this.turn] = this.times[this.turn] - 1;
         if (this.times[this.turn] <= 0) {
-          clearInterval(timesColor.white)
-          clearInterval(timesColor.black)
+          clearInterval(timesColor.white);
+          clearInterval(timesColor.black);
           this.times[this.turn] = 0
         }
       }.bind(this), 1000)
     },
     chessToColor (chess) {
-      var t = chess.turn()
+      var t = chess.turn();
       this.turn = (t === 'w') ? 'white' : 'black'
     },
     loadDataGame (board) {
-      clearTimeout(window.computerGame)
-      clearInterval(timesColor.white)
-      clearInterval(timesColor.black)
+      clearTimeout(window.computerGame);
+      clearInterval(timesColor.white);
+      clearInterval(timesColor.black);
 
       if (board.wins) {
-        this.boardShow = board
-        this.historyChange = true
-        this.changeStateGame(board)
+        this.boardShow = board;
+        this.historyChange = true;
+        this.changeStateGame(board);
         return
       }
       var data = {
         c: 'board',
         f: 'getBoard',
         data: board
-      }
+      };
       this.$socket.emit('event', data, function (...callbacks) {
         if (!callbacks[0]) {
-          var board = callbacks[1].board
-          this.boardShow = board
-          this.times = callbacks[1].times
-          this.historyChange = true
-          this.changeStateGame(board)
+          var board = callbacks[1].board;
+          this.boardShow = board;
+          this.times = callbacks[1].times;
+          this.historyChange = true;
+          this.changeStateGame(board);
           this.countDown()
         } else {
           this.boardShow = {
@@ -170,23 +170,23 @@ export default {
       }.bind(this))
     },
     FinishMoveCallback (move) {
-      var from = move & 0xFF
-      var to = (move >> 8) & 0xFF
-      var sfrom = Garbochess.FormatSquare(from)
-      var sto = Garbochess.FormatSquare(to)
+      var from = move & 0xFF;
+      var to = (move >> 8) & 0xFF;
+      var sfrom = Garbochess.FormatSquare(from);
+      var sto = Garbochess.FormatSquare(to);
       this.chess.move({
         from: sfrom,
         to: sto,
         promotion: 'q'
-      })
-      this.ground.move(sfrom, sto)
-      var fen = this.chess.fen()
+      });
+      this.ground.move(sfrom, sto);
+      var fen = this.chess.fen();
       var options = {
         orientation: 'white',
         fen: fen
-      }
-      this.ground.set(options)
-      this.chessToColor(this.chess)
+      };
+      this.ground.set(options);
+      this.chessToColor(this.chess);
       if (this.$route.path === '/home') {
         if (!this.chess.game_over()) {
           window.computerGame = setTimeout(function () {
@@ -198,37 +198,37 @@ export default {
       }
     },
     timerfunction (fen) {
-      Garbochess.InitializeFromFen(fen)
+      Garbochess.InitializeFromFen(fen);
       Garbochess.Search(this.FinishMoveCallback, 5, null)
     },
     pcVsPcInit () {
-      Garbochess.ResetGame()
+      Garbochess.ResetGame();
       setTimeout(function () {
-        var fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+        var fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
         this.timerfunction(fen)
       }.bind(this), 2000)
     }
   },
   watch: {
     board (newVal, oldVal) {
-      this.loadDataGame(newVal)
+      this.loadDataGame(newVal);
       this.result = {
         wins: '',
         motiv: ''
       }
     },
     turn (newVal, oldVal) {
-      clearInterval(timesColor[oldVal])
-      clearInterval(timesColor[newVal])
+      clearInterval(timesColor[oldVal]);
+      clearInterval(timesColor[newVal]);
       if (!this.boardShow.wins) {
         this.countDown()
       }
     }
   },
   created () {
-    clearTimeout(window.computerGame)
-    clearInterval(timesColor.white)
-    clearInterval(timesColor.black)
+    clearTimeout(window.computerGame);
+    clearInterval(timesColor.white);
+    clearInterval(timesColor.black);
     var options = {
       orientation: 'white',
       movable: {
@@ -238,12 +238,12 @@ export default {
         dropOff: 'revert', // when a piece is dropped outside the board. "revert" | "trash"
         showDests: true // add the move-dest class to squares
       }
-    }
+    };
     setTimeout(function () {
-      this.ground = Chessground(document.getElementById('frontBoardVisor'), options)
-      var Width = document.getElementById('frontBoardVisor').clientWidth
-      document.getElementById('frontBoardVisor').style.height = Width + 'px'
-      document.getElementById('frontBoardVisor').style.width = Width + 'px'
+      this.ground = Chessground(document.getElementById('frontBoardVisor'), options);
+      var Width = document.getElementById('frontBoardVisor').clientWidth;
+      document.getElementById('frontBoardVisor').style.height = Width + 'px';
+      document.getElementById('frontBoardVisor').style.width = Width + 'px';
       // getFromLocalStorage
       this.loadDataGame(this.board)
     }.bind(this), 100)
