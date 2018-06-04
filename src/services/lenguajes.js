@@ -1,6 +1,10 @@
 export default {
   lenguajes: [
     {
+      label: 'Українська',
+      value: 'ua'
+    },
+    {
       label: 'Русский',
       value: 'ru'
     },
@@ -9,4 +13,4 @@ export default {
       value: 'en'
     }
   ]
-}
+};

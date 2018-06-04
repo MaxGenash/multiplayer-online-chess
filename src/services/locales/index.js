@@ -1,7 +1,13 @@
 export default {
   i18n: {
     ua: {
-      title: 'Вхід',
+      login: {
+        title: 'Вхід',
+        username: 'Логін',
+        password: 'Пароль',
+        authenticate: 'Увійти',
+        createaccount: 'Зареєструватися'
+      }
     },
     ru: {
       login: {
@@ -175,7 +181,7 @@ export default {
         login: 'Войти'
       }
 
-  },
+    },
     en: {
       login: {
         title: 'user Login',
