@@ -14,7 +14,6 @@
                 </a>
             </md-collection-list-item>
         </md-collection-list>
-
     </md-modal>
 
 
@@ -26,21 +25,11 @@
             <board-history :history="history" :active="active" :humanvspc="isHumanVsPC"></board-history>
         </div>
         <div class="col s12 m12 l12">
-            <md-btn @mouseover="tooltip($event, 'Фигуры', 'top')" class="waves-effect waves-light col s2 m2 l2"
-                    @click="changeStyle('pieces')">
-                P
-            </md-btn>
-            <md-btn @mouseover="tooltip($event, 'Доска', 'top')" class="waves-effect waves-light col s2 m2 l2"
-                    @click="changeStyle('board')">
-                B
-            </md-btn>
-            <md-btn class="waves-effect waves-light col s4 m4 l4"
-                    @click="rendir()">
-                {{ $t("game.rend") }}
-            </md-btn>
             <md-btn
-                    class="waves-effect waves-light col s4 m4 l4" @click="changeOrientation">
-                {{ $t("game.invert") }}
+              class="waves-effect waves-light col s12 m12"
+              @click="rendir()"
+            >
+                {{ $t("game.rend") }}
             </md-btn>
         </div>
         <user-card :color="'black'" :username="userBlack" v-if="this.orientation !== 'white'"></user-card>
@@ -89,7 +78,7 @@
             word-wrap: break-word;
         }
         .card-panel{
-          padding-top: 10px !important;
+            padding-top: 10px !important;
         }
         .userTurn {
             background-color: #D8B980;

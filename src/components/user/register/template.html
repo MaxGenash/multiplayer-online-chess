@@ -47,7 +47,7 @@
 
         <md-button class="waves-effect waves-light col s6 m6 l6" @click="registerUser()">
             <md-icon left>check</md-icon>
-            {{ [user._id?'Editar':$t("register.insert")] }}
+            {{ [user._id ? 'Сохранить' : $t("register.insert")] }}
         </md-button>
         <md-button class="waves-effect waves-light col s6 m6 l6 cancel" v-link="{name: user._id?'user':'home'}">
             {{ $t("register.cancel") }}
